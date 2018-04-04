@@ -1,0 +1,11 @@
+﻿@model part1.Models.UserInfo 
+
+@{
+    ViewData["Title"] = "Part 1: Cookie Tracker";
+}
+
+@{
+    <p>You have visited this page @Html.DisplayFor(model => model.Visits) times.</p>
+    <p>Your IP Address is: @Html.DisplayFor(model => model.IPAddress) </p>
+    <p id="timezone"></p>
+}
