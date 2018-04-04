@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using part1.Models;
 
 namespace part1.Controllers
@@ -12,20 +13,22 @@ namespace part1.Controllers
     {
         public IActionResult Index()
         {
-            return View();
-        }
+            int visits = 0; 
+            String visitcount = Request.Cookies["VisitCount"];
+            if (visitcount != null) {
+                visits = Int32.Parse(visitcount);
+                visits++;
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+            }
+            else {
+                visits = 1;
+            }
+            Response.Cookies.Delete("VisitCount");
+            Response.Cookies.Append("VisitCount", (visits).ToString());
 
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
+            ViewData["VisitCount"] = visits;
+            ViewData["IPAddr"] = Request.HttpContext.Connection.LocalIpAddress;
+            ViewData["Timezone"] = Request.Cookies["timezone"];
             return View();
         }
 
