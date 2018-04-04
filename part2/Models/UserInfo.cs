@@ -1,0 +1,10 @@
+﻿using System;
+namespace part2.Models
+{
+    public class UserInfo
+    {
+        public int Visits { get; set;} 
+        public string IPAddress { get; set; }
+        public string Timezone { get; set; }
+    }
+}

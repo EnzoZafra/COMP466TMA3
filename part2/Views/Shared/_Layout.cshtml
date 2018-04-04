@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - part2</title>
+    <link rel="stylesheet" href="~/css/materialize.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+<body onload="updateTimezone()">
+    <nav class="pink lighten-1" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="main.php" class="brand-logo">CookieTracker</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="white-text" asp-controller="Home" asp-action="Index">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2018 - part2</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="~/js/materialize.min.js" asp-append-version="true"></script>
+            
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
