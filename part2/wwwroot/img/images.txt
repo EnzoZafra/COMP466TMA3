@@ -1,0 +1,84 @@
+{
+  "Slideshow": [
+    {
+      "Url": "/img/1.jpg",
+      "Caption": "Frozen waterfall - Abraham Lake"
+    },
+    {
+      "Url": "/img/2.jpg",
+      "Caption": "Methane bubbles - Abraham Lake"
+    },
+    {
+      "Url": "/img/3.jpg",
+      "Caption": "Snowboarding at Lake Louse Alberta"
+    },
+    {
+      "Url": "/img/4.jpg",
+      "Caption": "A Private island in Puerto Princessa Palawan"
+    },
+    {
+      "Url": "/img/5.jpg",
+      "Caption": "A Subaru WRX in its natural habitat"
+    },
+    {
+      "Url": "/img/6.jpg",
+      "Caption": "Frozen waterfall in Banff Alberta"
+    },
+    {
+      "Url": "/img/7.jpg",
+      "Caption": "A peak at Mount Rae"
+    },
+    {
+      "Url": "/img/8.jpg",
+      "Caption": "Mount Rae valley, Alberta"
+    },
+    {
+      "Url": "/img/9.jpg",
+      "Caption": "Snowing in Mount Rae Alberta"
+    },
+    {
+      "Url": "/img/10.jpg",
+      "Caption": "A lake in Mount Rae Alberta"
+    },
+    {
+      "Url": "/img/11.jpg",
+      "Caption": "Sunny day at a lake in Banff, Alberta"
+    },
+    {
+      "Url": "/img/12.jpg",
+      "Caption": "A nice landscape of a lake in Banff, Alberta"
+    },
+    {
+      "Url": "/img/13.jpg",
+      "Caption": "Small lake in the middle of the mountain"
+    },
+    {
+      "Url": "/img/14.jpg",
+      "Caption": "Subaru WRX by a DAM"
+    },
+    {
+      "Url": "/img/15.jpg",
+      "Caption": "A Subaru WRX in a parkade. Downtown Edmonton"
+    },
+    {
+      "Url": "/img/16.jpg",
+      "Caption": "Jasper Alberta Hiking Trail"
+    },
+    {
+      "Url": "/img/17.jpg",
+      "Caption": "Subaru WRX in the wild"
+    },
+    {
+      "Url": "/img/18.jpg",
+      "Caption": "Fountain show in Las Vegas Nevada"
+    },
+    {
+      "Url": "/img/19.jpg",
+      "Caption": "Hoover Dam, Las Vegas"
+    },
+    {
+      "Url": "/img/20.jpg",
+      "Caption": "Top of the Hoover Dam"
+    }
+  ]
+}

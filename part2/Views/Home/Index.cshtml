@@ -1,11 +1,48 @@
-﻿@model part2.Models.UserInfo 
+﻿@model part2.Models.Slideshow
 
 @{
     ViewData["Title"] = "Part 2: Slideshow";
 }
 
-@{
-    <p>You have visited this page @Html.DisplayFor(model => model.Visits) times.</p>
-    <p>Your IP Address is: @Html.DisplayFor(model => model.IPAddress) </p>
-    <p id="timezone"></p>
+@{ 
+    <div class="center card-panel">
+      <h2 class="teal-text">HTML5 Slideshow</h2>
+      <div id="action-buttons" class="center">
+        <a id="prev_btn" class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">skip_previous</i></a>
+        <a id="start_btn" class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">play_arrow</i></a>
+        <a id="next_btn" class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">skip_next</i></a>
+      </div>
+      <div></div>
+      <div class="switch">
+        <label class="teal-text">
+          Sequential
+          <input type="checkbox" id="mySwitch">
+          <span class="lever"></span>
+          Random
+        </label>
+      </div>
+    </div>
+    <div class="card-panel fill">
+        <div id="slideshowcarousel" class="carousel slide center" data-interval="500" data-ride="carousel">  
+            <div class="carousel-inner">
+                @foreach(var item in Model.getImages()){
+                    <div class="item"> 
+                        <img src="@Url.Content(item.Url)" class="img-responsive">  
+                        <div class="carousel-caption">  
+                            <p>@item.Caption</p>  
+                        </div>  
+                    </div>  
+                }
+            </div>  
+
+            <a href="#slideshowcarousel" class="carousel-control left" data-slide="prev">  
+                <span class="glyphicon glyphicon-hand-left"></span>  
+            </a>  
+            <a href="#slideshowcarousel" class="carousel-control right" data-slide="next">  
+                <span class="glyphicon glyphicon-hand-right"></span>  
+            </a>  
+           
+        </div> 
+    </div>
+
 }

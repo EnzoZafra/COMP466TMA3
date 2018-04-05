@@ -6,15 +6,14 @@
     <title>@ViewData["Title"] - part2</title>
     <link rel="stylesheet" href="~/css/materialize.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
-<body onload="updateTimezone()">
+<body class="cyan">
     <nav class="pink lighten-1" role="navigation">
         <div class="nav-wrapper container">
-            <a href="main.php" class="brand-logo">CookieTracker</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a class="white-text" asp-controller="Home" asp-action="Index">Home</a></li>
-            </ul>
+            <a asp-controller="Home" asp-action="Index" class="brand-logo">Slideshow</a>
         </div>
     </nav>
     <div class="container body-content">
@@ -27,6 +26,9 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="~/js/materialize.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/script.js" asp-append-version="true"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             
     @RenderSection("Scripts", required: false)
 </body>
