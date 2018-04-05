@@ -13,3 +13,7 @@
 .dropdown-form {
 	margin-bottom: 0em; !important
 }
+
+.tabs .indicator {
+    background-color: #009688;
+}
