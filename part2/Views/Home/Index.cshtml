@@ -8,9 +8,7 @@
     <div class="center card-panel">
       <h2 class="teal-text">HTML5 Slideshow</h2>
       <div id="action-buttons" class="center">
-        <a id="prev_btn" class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">skip_previous</i></a>
         <a id="start_btn" class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">play_arrow</i></a>
-        <a id="next_btn" class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">skip_next</i></a>
       </div>
       <div></div>
       <div class="switch">
@@ -23,7 +21,7 @@
       </div>
     </div>
     <div class="card-panel fill">
-        <div id="slideshowcarousel" class="carousel slide center" data-interval="500" data-ride="carousel">  
+        <div id="slideshowcarousel" class="carousel slide center" data-interval="2000" data-ride="carousel">  
             <div class="carousel-inner">
                 @foreach(var item in Model.getImages()){
                     <div class="item"> 
