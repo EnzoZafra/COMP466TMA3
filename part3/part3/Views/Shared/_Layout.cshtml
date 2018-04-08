@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - part3</title>
+    <link rel="stylesheet" href="~/css/materialize.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+</head>
+<nav class="pink lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+        <a asp-controller="Home" asp-action="Index" class="brand-logo">PC Express</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="white-text" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a class="white-text" asp-controller="Shop" asp-action="Index">Shop</a></li>
+            <li><a class="white-text" asp-controller="Configurator" asp-action="Index">Configurator</a></li>
+            <li><a class="white-text" asp-controller="Shop" asp-action="Checkout">Checkout</a></li>
+            <li><a class="white-text" asp-controller="Home" asp-action="Contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<body class="cyan">    
+    <div class="card-panel body-content">
+        <div class="container">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2018 - Lorenzo Zafra</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/js/materialize.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
