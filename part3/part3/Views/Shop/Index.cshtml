@@ -18,29 +18,41 @@
 </div>
 <hr>
 <div id="prebuilt">
+  <div class="row">
     @foreach (var item in Model.getPrebuiltConfigurations())
     {
-      <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m4">
           <div class="card">
             <div class="card-image">
               <img src="images/computer.jpg" >
               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
             </div>
             <div class="card-content">
-              <span class="card-title pink-text">@item.getName()</span>
-              <p>This computer has this blah blah blah blah ayyyyy</p>
+              <div class="card-title pink-text row">
+                <div class="col s8">
+                    @item.getName()
+                </div>
+                <div class="col s4">
+                    <h6>$@item.getPrice().ToString("0.00")</h6>
+                </div>
+              </div>
+              <p>@item.getDescription()</p>
+              <div>
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Configure
+                    <i class="material-icons right">settings</i>
+                  </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     }
+  </div>
 </div>
 <div id="hardware">
-    @foreach (var item in Model.getHardware())
-    {
-      <div class="row">
-        <div class="col s12 m6">
+  <div class="row">
+        @foreach (var item in Model.getHardware())
+        {
+        <div class="col s12 m4">
           <div class="card">
             <div class="card-image">
               @if (item.getType() == "VideoCard") {
@@ -52,8 +64,17 @@
               @if (item.getType() == "Motherboard") {
                 <img class="mycard-image" src="images/motherboard.jpg">
               }
-              @if (item.getType() == "Memory") {
+              @if (item.getType() == "RAM") {
                 <img class="mycard-image" src="images/memory.jpg">
+              }
+              @if (item.getType() == "SoundCard") {
+                <img class="mycard-image" src="images/soundcard.jpeg">
+              }
+              @if (item.getType() == "OperatingSystem") {
+                <img class="mycard-image" src="images/operatingsystem.jpg">
+              }
+              @if (item.getType() == "Harddrive") {
+                <img class="mycard-image" src="images/harddrive.jpg">
               }
               @if (item.getType() == "PowerSupply") {
                 <img class="mycard-image" src="images/powersupply.jpg">
@@ -61,14 +82,76 @@
               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
             </div>
             <div class="card-content">
-              <span class="card-title pink-text">@item.getName()</span>
+              <div class="card-title pink-text row">
+                <div class="col s8">
+                    @item.getName()
+                </div>
+                <div class="col s4">
+                    <h6>$@item.getPrice().ToString("0.00")</h6>
+                </div>
+              </div>
+                <div class="col s4">
+                    <p>@item.getType()</p>
+                </div>
+            </div>
+          </div>
+        </div>
+    }
+  </div>
+</div>
+<div id="peripherals">
+    <div class="row">
+        @foreach (var item in Model.getPeripherals())
+        {
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+               <img class="mycard-image" src="images/someimg.jpg">
+               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+            <div class="card-content">
+            <div class="card-title pink-text row">
+                <div class="col s8">
+                    @item.getName()
+                </div>
+                <div class="col s4">
+                    <h6>$@item.getPrice().ToString("0.00")</h6>
+                </div>
+              </div>
               <p>
-                @item.getType()
+                @item.getDescription()
               </p>
             </div>
           </div>
         </div>
-      </div>
     }
+  </div>
 </div>
-<div id="peripherals">Test 4</div>
+<div id="software">
+    <div class="row">
+        @foreach (var item in Model.getSoftware())
+        {
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+               <img class="mycard-image" src="images/operatingsystem.jpg">
+               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+            <div class="card-content">
+            <div class="card-title pink-text row">
+                <div class="col s8">
+                    @item.getName()
+                </div>
+                <div class="col s4">
+                    <h6>$@item.getPrice().ToString("0.00")</h6>
+                </div>
+              </div>
+              <p>
+                @item.getDescription()
+              </p>
+            </div>
+          </div>
+        </div>
+    }
+  </div>
+</div>

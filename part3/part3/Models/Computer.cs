@@ -7,11 +7,15 @@ namespace part3.Models
     {
         private String Name { get; set; }
         private ArrayList<Part> Parts { get; set; }
+        private String Description { get; set; }
+        private Software OperatingSystem { get; set; }
 
-        public Computer(String name, ArrayList<Part> parts)
+        public Computer(String name, ArrayList<Part> parts, Software os, String desc)
         {
             this.Name = name;
             this.Parts = parts;
+            this.OperatingSystem = os;
+            this.Description = desc;
         }
 
         public String getName()
@@ -19,10 +23,21 @@ namespace part3.Models
             return Name;
         }
 
-        public int getPrice()
+        public Software getOperatingSystem()
         {
-            int sum = 0;
+            return OperatingSystem;
+        }
+
+        public String getDescription()
+        {
+            return Description;
+        }
+
+        public double getPrice()
+        {
+            double sum = 0;
             foreach (Part item in Parts) sum += item.getPrice();
+            sum += OperatingSystem.getPrice();
 
             return sum;
         }

@@ -1,20 +1,17 @@
 ﻿using System;
 namespace part3.Models
 {
-    public class Part
+    public class Software
     {
         private String Name;
-        private String Type;
+        private String Description;
         private double Price;
 
-        public Part(String name, String type, double price) {
+        public Software(String name, String desc, double price)
+        {
             this.Name = name;
-            this.Type = type;
+            this.Description = desc;
             this.Price = price;
-        }
-
-        public double getPrice() {
-            return Price;
         }
 
         public String getName()
@@ -22,9 +19,14 @@ namespace part3.Models
             return Name;
         }
 
-        public String getType()
+        public String getDescription()
         {
-            return Type;
+            return Description;
+        }
+
+        public double getPrice()
+        {
+            return Price;
         }
 
         public override String ToString()

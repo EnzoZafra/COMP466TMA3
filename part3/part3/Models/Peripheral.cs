@@ -1,25 +1,32 @@
 ﻿using System;
 namespace part3.Models
 {
-    public class Part
+    public class Peripheral
     {
         private String Name;
         private String Type;
-        private double Price;
+        private String Description;
+        private int Price;
 
-        public Part(String name, String type, double price) {
+        public Peripheral(String name, String type, String desc, int price) {
             this.Name = name;
             this.Type = type;
+            this.Description = desc;
             this.Price = price;
         }
 
-        public double getPrice() {
+        public int getPrice() {
             return Price;
         }
 
         public String getName()
         {
             return Name;
+        }
+
+        public String getDescription()
+        {
+            return Description;
         }
 
         public String getType()
