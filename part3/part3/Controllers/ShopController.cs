@@ -17,11 +17,11 @@ namespace part3.Controllers
 
             for (int i = 0; i < 10; i++) {
                 ArrayList<Part> partlist = new ArrayList<Part>();
-                Part part1 = new Part("VideoCard " + i, PartType.VideoCard, i * 15);
-                Part part2 = new Part("Processor " + i, PartType.Processor, i * 10);
-                Part part3 = new Part("PowerSupply " + i, PartType.PowerSupply, i * 3);
-                Part part4 = new Part("Memory " + i, PartType.Memory, i * 6);
-                Part part5 = new Part("Motherboard " + i, PartType.Motherboard, i * 5);
+                Part part1 = new Part("VideoCard " + i, "VideoCard", i * 15);
+                Part part2 = new Part("Processor " + i, "Processor", i * 10);
+                Part part3 = new Part("PowerSupply " + i, "PowerSupply", i * 3);
+                Part part4 = new Part("Memory " + i, "Memory", i * 6);
+                Part part5 = new Part("Motherboard " + i, "Motherboard", i * 5);
 
                 partlist.Add(part1);
                 partlist.Add(part2);

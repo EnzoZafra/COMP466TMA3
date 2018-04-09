@@ -1,5 +1,4 @@
 ﻿@model part3.Models.Shop
-
 @{
     ViewData["Title"] = "PC Express Shop";
 }
@@ -18,16 +17,58 @@
     </ul>
 </div>
 <hr>
-<div id="prebuilt" class="col s12">
+<div id="prebuilt">
     @foreach (var item in Model.getPrebuiltConfigurations())
     {
-        <p>@item.getName()</p>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              <img src="images/computer.jpg" >
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+            <div class="card-content">
+              <span class="card-title pink-text">@item.getName()</span>
+              <p>This computer has this blah blah blah blah ayyyyy</p>
+            </div>
+          </div>
+        </div>
+      </div>
     }
 </div>
-<div id="hardware" class="col s12">
+<div id="hardware">
     @foreach (var item in Model.getHardware())
     {
-        <p>@item.getName()</p>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              @if (item.getType() == "VideoCard") {
+                <img class="mycard-image" src="images/videocard.png">
+              }
+              @if (item.getType() == "Processor") {
+                <img class="mycard-image" src="images/processor.jpeg">
+              }
+              @if (item.getType() == "Motherboard") {
+                <img class="mycard-image" src="images/motherboard.jpg">
+              }
+              @if (item.getType() == "Memory") {
+                <img class="mycard-image" src="images/memory.jpg">
+              }
+              @if (item.getType() == "PowerSupply") {
+                <img class="mycard-image" src="images/powersupply.jpg">
+              }
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+            <div class="card-content">
+              <span class="card-title pink-text">@item.getName()</span>
+              <p>
+                @item.getType()
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     }
 </div>
-<div id="peripherals" class="col s12">Test 4</div>
+<div id="peripherals">Test 4</div>
