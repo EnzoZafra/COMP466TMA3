@@ -1,5 +1,7 @@
-﻿@{
+﻿@model part3.Models.Shop
 
+@{
+    ViewData["Title"] = "PC Express Shop";
 }
 
 <div class="input-field">
@@ -9,12 +11,23 @@
 </div>
 <div>
     <ul class="tabs">
-        <li class="tab col s3"><a class="teal-text" href="#test1">Prebuilt Configurations</a></li>
-        <li class="tab col s3"><a class="teal-text" href="#test2">Computer Hardware</a></li>
-        <li class="tab col s3"><a class="teal-text" href="#test4">Peripherals</a></li>
-        <li class="tab col s3"><a class="teal-text" href="#test4">Software</a></li>
+        <li class="tab col s3"><a class="teal-text" href="#prebuilt">Prebuilt Configurations</a></li>
+        <li class="tab col s3"><a class="teal-text" href="#hardware">Computer Hardware</a></li>
+        <li class="tab col s3"><a class="teal-text" href="#peripherals">Peripherals</a></li>
+        <li class="tab col s3"><a class="teal-text" href="#software">Software</a></li>
     </ul>
 </div>
-<div id="test1" class="col s12">Test 1</div>
-<div id="test2" class="col s12">Test 2</div>
-<div id="test4" class="col s12">Test 4</div>
+<hr>
+<div id="prebuilt" class="col s12">
+    @foreach (var item in Model.getPrebuiltConfigurations())
+    {
+        <p>@item.getName()</p>
+    }
+</div>
+<div id="hardware" class="col s12">
+    @foreach (var item in Model.getHardware())
+    {
+        <p>@item.getName()</p>
+    }
+</div>
+<div id="peripherals" class="col s12">Test 4</div>
