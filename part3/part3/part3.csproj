@@ -53,6 +53,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\Shop\" />
+    <Folder Include="Views\Configurator\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="wwwroot\js\script.js" />

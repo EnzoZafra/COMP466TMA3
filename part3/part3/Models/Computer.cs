@@ -46,5 +46,20 @@ namespace part3.Models
         {
             return Parts;
         }
+
+        public void setName(String name)
+        {
+            this.Name = name;
+        }
+
+        public void setOperatingSystem(Software os)
+        {
+            this.OperatingSystem = os;
+        }
+
+        public void setDescription(String desc)
+        {
+            this.Description = desc;
+        }
     }
 }

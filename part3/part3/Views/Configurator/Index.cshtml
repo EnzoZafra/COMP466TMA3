@@ -1,0 +1,112 @@
+﻿@model part3.Models.Configurator
+@{
+    ViewData["Title"] = "PC Express Configurator";
+}
+<div class="pricebox card-panel teal-text">
+    <h5>Your total:</h5>
+    <h4>$@Model.getComputer().getPrice().ToString()</h4>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Buy
+        <i class="material-icons right">shopping_cart</i>
+    </button>
+</div>
+
+<div class="card-panel">
+    <form asp-controller="Shop" asp-action="Checkout" method="post">
+        <div class="card-panel" id="processor">
+            <div class="input-field col s12">
+                <select class="teal-text" name="processor">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Select a Processor</label>
+            </div>
+        </div>
+        
+        <div class="card-panel" id="motherboard">
+            <div class="input-field col s12">
+                <select class="teal-text" name="motherboard">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Select a Motherboard</label>
+            </div>
+        </div>
+        
+        <div class="card-panel" id="ram">
+            <div class="input-field col s12">
+                <select class="teal-text" name="ram">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Select a RAM</label>
+            </div>
+        </div>
+        
+        <div class="card-panel" id="harddrive">
+            <div class="input-field col s12">
+                <select class="teal-text" name="harddrive">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Select a Harddrive</label>
+            </div>
+        </div>
+        
+        <div class="card-panel" id="videocard">
+            <div class="input-field col s12">
+                <select class="teal-text" name="videocard">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Select a Video Card</label>
+            </div>
+        </div>
+        
+        <div class="card-panel" id="powersupply">
+            <div class="input-field col s12">
+                <select class="teal-text" name="powersupply">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Select a Power Supply</label>
+            </div>
+        </div>
+        
+        <div class="card-panel" id="soundcard">
+            <div class="input-field col s12">
+                <select class="teal-text" name="soundcard">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Select a Sound Card</label>
+            </div>
+        </div>
+        
+        <div class="card-panel" id="os">
+            <div class="input-field col s12">
+                <select class="teal-text" name="os">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+                <label>Select an Operating System</label>
+            </div>
+        </div>
+        
+    </form>
+</div>
