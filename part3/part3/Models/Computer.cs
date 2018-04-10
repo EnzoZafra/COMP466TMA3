@@ -37,7 +37,9 @@ namespace part3.Models
         {
             double sum = 0;
             foreach (Part item in Parts) sum += item.getPrice();
-            sum += OperatingSystem.getPrice();
+            if (OperatingSystem != null) {
+                sum += OperatingSystem.getPrice();
+            }
 
             return sum;
         }

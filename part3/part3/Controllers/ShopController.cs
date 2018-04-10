@@ -16,18 +16,18 @@ namespace part3.Controllers
             ArrayList<Computer> prebuilt = new ArrayList<Computer>();
             ArrayList<Software> software = new ArrayList<Software>();
             ArrayList<Peripheral> peripherals = new ArrayList<Peripheral>();
-
+            int counter = 0;
             for (int i = 0; i < 5; i++) {
                 ArrayList<Part> partlist = new ArrayList<Part>();
-                Part part1 = new Part("VideoCard " + i, "VideoCard", 499.99);
-                Part part2 = new Part("Processor " + i, "Processor", 374.99);
-                Part part3 = new Part("Harddrive " + i, "Harddrive", 89.99);
-                Part part4 = new Part("RAM " + i, "RAM", 224.99);
-                Part part5 = new Part("Motherboard " + i, "Motherboard", 129.99);
-                Part part7 = new Part("Sound Card" + i, "SoundCard", 49.99);
-                Part part8 = new Part("Power Supply" + i, "PowerSupply", 89.99);
+                Part part1 = new Part(++counter, "VideoCard " + i, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
+                Part part2 = new Part(++counter, "Processor " + i, "6-Core 3.2 GHz", "Processor", 374.99);
+                Part part3 = new Part(++counter, "Harddrive " + i, "2 Terabyte Drive", "Harddrive", 89.99);
+                Part part4 = new Part(++counter, "RAM " + i, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
+                Part part5 = new Part(++counter, "Motherboard " + i, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
+                Part part7 = new Part(++counter, "Sound Card" + i, "7.1 Surround Sound", "SoundCard", 49.99);
+                Part part8 = new Part(++counter, "Power Supply" + i, "Gold 550w Modular", "PowerSupply", 89.99);
 
-                Software os = new Software("Operating System" + i, "A Windows Operating System", 119.99);
+                Software os = new Software(++counter, "Operating System" + i, "A Windows Operating System", 119.99);
                 software.Add(os);
 
                 partlist.Add(part1);
@@ -52,8 +52,6 @@ namespace part3.Controllers
                 hardware.Add(part7);
                 hardware.Add(part8);
 
-                String test = comp.getDescription();
-                String lol = test;
             }
 
             Shop shop = new Shop(prebuilt, hardware, software, peripherals);

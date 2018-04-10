@@ -16,9 +16,10 @@
             <div class="input-field col s12">
                 <select class="teal-text" name="processor">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    @foreach (var item in Model.getProcessorsStock()) 
+                    {
+                        <option value="@item.getProductId()">@item.getName()</option>
+                    }
                 </select>
                 <label>Select a Processor</label>
             </div>
@@ -28,9 +29,10 @@
             <div class="input-field col s12">
                 <select class="teal-text" name="motherboard">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    @foreach (var item in Model.getMotherboardsStock()) 
+                    {
+                        <option value="@item.getProductId()">@item.getName()</option>
+                    }
                 </select>
                 <label>Select a Motherboard</label>
             </div>
@@ -40,9 +42,10 @@
             <div class="input-field col s12">
                 <select class="teal-text" name="ram">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    @foreach (var item in Model.getRamsStock()) 
+                    {
+                        <option value="@item.getProductId()">@item.getName()</option>
+                    }
                 </select>
                 <label>Select a RAM</label>
             </div>
@@ -52,9 +55,10 @@
             <div class="input-field col s12">
                 <select class="teal-text" name="harddrive">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    @foreach (var item in Model.getHarddrivesStock()) 
+                    {
+                        <option value="@item.getProductId()">@item.getName()</option>
+                    }
                 </select>
                 <label>Select a Harddrive</label>
             </div>
@@ -64,9 +68,10 @@
             <div class="input-field col s12">
                 <select class="teal-text" name="videocard">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    @foreach (var item in Model.getVideocardsStock()) 
+                    {
+                        <option value="@item.getProductId()">@item.getName()</option>
+                    }
                 </select>
                 <label>Select a Video Card</label>
             </div>
@@ -76,9 +81,10 @@
             <div class="input-field col s12">
                 <select class="teal-text" name="powersupply">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    @foreach (var item in Model.getPowersuppliesStock()) 
+                    {
+                        <option value="@item.getProductId()">@item.getName()</option>
+                    }
                 </select>
                 <label>Select a Power Supply</label>
             </div>
@@ -88,9 +94,10 @@
             <div class="input-field col s12">
                 <select class="teal-text" name="soundcard">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    @foreach (var item in Model.getSoundcardsStock()) 
+                    {
+                        <option value="@item.getProductId()">@item.getName()</option>
+                    }
                 </select>
                 <label>Select a Sound Card</label>
             </div>
@@ -100,9 +107,10 @@
             <div class="input-field col s12">
                 <select class="teal-text" name="os">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    @foreach (var item in Model.getOSStock()) 
+                    {
+                        <option value="@item.getProductId()">@item.getName()</option>
+                    }
                 </select>
                 <label>Select an Operating System</label>
             </div>

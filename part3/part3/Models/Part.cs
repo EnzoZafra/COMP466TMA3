@@ -1,35 +1,18 @@
 ﻿using System;
 namespace part3.Models
 {
-    public class Part
+    public class Part : Product
     {
-        private String Name;
-        private String Type;
-        private double Price;
-
-        public Part(String name, String type, double price) {
-            this.Name = name;
-            this.Type = type;
-            this.Price = price;
-        }
-
-        public double getPrice() {
-            return Price;
-        }
-
-        public String getName()
+        String Type;
+        public Part(int pid, String name, String desc, String type, double price) 
+            : base(pid, name, desc, price)
         {
-            return Name;
+            this.Type = type;
         }
 
         public String getType()
         {
             return Type;
-        }
-
-        public override String ToString()
-        {
-            return this.Name;
         }
     }
 }
