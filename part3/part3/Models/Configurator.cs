@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
 
 namespace part3.Models
@@ -6,18 +7,18 @@ namespace part3.Models
     public class Configurator
     {
         private Computer Computer;
-        private ArrayList<Part> Processors;
-        private ArrayList<Part> Motherboards;
-        private ArrayList<Part> Rams;
-        private ArrayList<Part> Harddrives;
-        private ArrayList<Part> Videocards;
-        private ArrayList<Part> Powersupplies;
-        private ArrayList<Part> Soundcards;
-        private ArrayList<Software> Operatingsystems;
+        private List<Part> Processors;
+        private List<Part> Motherboards;
+        private List<Part> Rams;
+        private List<Part> Harddrives;
+        private List<Part> Videocards;
+        private List<Part> Powersupplies;
+        private List<Part> Soundcards;
+        private List<Software> Operatingsystems;
 
-        public Configurator(Computer computer, ArrayList<Part> cpus, ArrayList<Part> motherboards,
-                            ArrayList<Part> rams, ArrayList<Part> harddrives, ArrayList<Part> videocards,
-                            ArrayList<Part> powersupplies, ArrayList<Part> soundcards, ArrayList<Software> oss
+        public Configurator(Computer computer, List<Part> cpus, List<Part> motherboards,
+                            List<Part> rams, List<Part> harddrives, List<Part> videocards,
+                            List<Part> powersupplies, List<Part> soundcards, List<Software> oss
                            )
         {
             this.Computer = computer;
@@ -35,42 +36,42 @@ namespace part3.Models
             return Computer;
         }
 
-        public ArrayList<Part> getProcessorsStock()
+        public List<Part> getProcessorsStock()
         {
             return Processors;
         }
 
-        public ArrayList<Part> getMotherboardsStock()
+        public List<Part> getMotherboardsStock()
         {
             return Motherboards;
         }
 
-        public ArrayList<Part> getRamsStock()
+        public List<Part> getRamsStock()
         {
             return Rams;
         }
 
-        public ArrayList<Part> getHarddrivesStock()
+        public List<Part> getHarddrivesStock()
         {
             return Harddrives;
         }
 
-        public ArrayList<Part> getVideocardsStock()
+        public List<Part> getVideocardsStock()
         {
             return Videocards;
         }
 
-        public ArrayList<Part> getPowersuppliesStock()
+        public List<Part> getPowersuppliesStock()
         {
             return Powersupplies;
         }
 
-        public ArrayList<Part> getSoundcardsStock()
+        public List<Part> getSoundcardsStock()
         {
             return Soundcards;
         }
 
-        public ArrayList<Software> getOSStock()
+        public List<Software> getOSStock()
         {
             return Operatingsystems;
         }

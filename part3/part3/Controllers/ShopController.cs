@@ -12,13 +12,13 @@ namespace part3.Controllers
     {
         public IActionResult Index()
         {
-            ArrayList<Part> hardware = new ArrayList<Part>();
-            ArrayList<Computer> prebuilt = new ArrayList<Computer>();
-            ArrayList<Software> software = new ArrayList<Software>();
-            ArrayList<Peripheral> peripherals = new ArrayList<Peripheral>();
+            List<Part> hardware = new List<Part>();
+            List<Computer> prebuilt = new List<Computer>();
+            List<Software> software = new List<Software>();
+            List<Peripheral> peripherals = new List<Peripheral>();
             int counter = 0;
             for (int i = 0; i < 5; i++) {
-                ArrayList<Part> partlist = new ArrayList<Part>();
+                List<Part> partlist = new List<Part>();
                 Part part1 = new Part(++counter, "VideoCard " + i, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
                 Part part2 = new Part(++counter, "Processor " + i, "6-Core 3.2 GHz", "Processor", 374.99);
                 Part part3 = new Part(++counter, "Harddrive " + i, "2 Terabyte Drive", "Harddrive", 89.99);

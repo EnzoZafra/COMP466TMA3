@@ -12,18 +12,18 @@ namespace part3.Controllers
     {
         public IActionResult Index()
         {
-            ArrayList<Part> partlist = new ArrayList<Part>();
+            List<Part> partlist = new List<Part>();
             String desc = "I'm building my own computer";
             Computer comp = new Computer("My build", partlist, null, desc);
 
-            ArrayList<Part> gpus = new ArrayList<Part>();
-            ArrayList<Part> cpus = new ArrayList<Part>();
-            ArrayList<Software> oss = new ArrayList<Software>();
-            ArrayList<Part> rams = new ArrayList<Part>();
-            ArrayList<Part> hdds = new ArrayList<Part>();
-            ArrayList<Part> mbs = new ArrayList<Part>();
-            ArrayList<Part> scs = new ArrayList<Part>();
-            ArrayList<Part> pss = new ArrayList<Part>();
+            List<Part> gpus = new List<Part>();
+            List<Part> cpus = new List<Part>();
+            List<Software> oss = new List<Software>();
+            List<Part> rams = new List<Part>();
+            List<Part> hdds = new List<Part>();
+            List<Part> mbs = new List<Part>();
+            List<Part> scs = new List<Part>();
+            List<Part> pss = new List<Part>();
 
             int counter = 0;
             for (int i = 0; i < 5; i++)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
 
 namespace part3.Models
@@ -6,11 +7,11 @@ namespace part3.Models
     public class Computer
     {
         private String Name { get; set; }
-        private ArrayList<Part> Parts { get; set; }
+        private List<Part> Parts { get; set; }
         private String Description { get; set; }
         private Software OperatingSystem { get; set; }
 
-        public Computer(String name, ArrayList<Part> parts, Software os, String desc)
+        public Computer(String name, List<Part> parts, Software os, String desc)
         {
             this.Name = name;
             this.Parts = parts;
@@ -44,7 +45,7 @@ namespace part3.Models
             return sum;
         }
 
-        public ArrayList<Part> getParts()
+        public List<Part> getParts()
         {
             return Parts;
         }
