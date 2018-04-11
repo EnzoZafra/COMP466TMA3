@@ -4,11 +4,11 @@
 }
 @section Scripts
 {
-  <script src="@Url.Content("~/js/configurator.js")"></script>
+    <script src="@Url.Content("~/js/configurator.js")"></script>
 }
 <div class="pricebox card-panel teal-text">
     <h5>Your total:</h5>
-    <h4>$@Model.getComputer().getPrice().ToString()</h4>
+    <h4 id="totalprice">$@Model.getComputer().getPrice().ToString()</h4>
     <button class="btn waves-effect waves-light" type="submit" name="action">Buy
         <i class="material-icons right">shopping_cart</i>
     </button>
@@ -21,6 +21,7 @@
                 <div class="input-field col s10">
                     <select class="teal-text" id="processor">
                         <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
                         @foreach (var item in Model.getProcessorsStock()) 
                         {
                             <option value="@item.getProductId()">@item.getName()</option>
@@ -29,7 +30,7 @@
                     <label>Select a Processor</label>
                 </div>
                 <div class="col s2">
-                    <h5 name="cpuprice" class="right teal-text">$0.00</h5>
+                    <h5 id="cpuprice" class="right teal-text">$0.00</h5>
                 </div>
             </div>
         </div>
@@ -39,6 +40,7 @@
                 <div class="input-field col s10">
                     <select class="teal-text" id="motherboard">
                         <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
                         @foreach (var item in Model.getMotherboardsStock()) 
                         {
                             <option value="@item.getProductId()">@item.getName()</option>
@@ -47,7 +49,7 @@
                     <label>Select a Motherboard</label>
                 </div>
                 <div class="col s2">
-                    <h5 name="mbprice" class="right teal-text">$0.00</h5>
+                    <h5 id="mbprice" class="right teal-text">$0.00</h5>
                 </div>
             </div>
         </div>
@@ -57,6 +59,7 @@
                 <div class="input-field col s10">
                     <select class="teal-text" id="ram">
                         <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
                         @foreach (var item in Model.getRamsStock()) 
                         {
                             <option value="@item.getProductId()">@item.getName()</option>
@@ -65,7 +68,7 @@
                     <label>Select a RAM</label>
                 </div>
                 <div class="col s2">
-                    <h5 name="ramprice" class="right teal-text">$0.00</h5>
+                    <h5 id="ramprice" class="right teal-text">$0.00</h5>
                 </div>
             </div>
         </div>
@@ -75,6 +78,7 @@
                 <div class="input-field col s10">
                     <select class="teal-text" id="harddrive">
                         <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
                         @foreach (var item in Model.getHarddrivesStock()) 
                         {
                             <option value="@item.getProductId()">@item.getName()</option>
@@ -83,7 +87,7 @@
                     <label>Select a Harddrive</label>
                 </div>
                 <div class="col s2">
-                    <h5 name="hddprice" class="right teal-text">$0.00</h5>
+                    <h5 id="hddprice" class="right teal-text">$0.00</h5>
                 </div>
             </div>
         </div>
@@ -93,6 +97,7 @@
                 <div class="input-field col s10">
                     <select class="teal-text" id="videocard">
                         <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
                         @foreach (var item in Model.getVideocardsStock()) 
                         {
                             <option value="@item.getProductId()">@item.getName()</option>
@@ -101,7 +106,7 @@
                     <label>Select a Video Card</label>
                 </div>
                 <div class="col s2">
-                    <h5 name="gpuprice" class="right teal-text">$0.00</h5>
+                    <h5 id="gpuprice" class="right teal-text">$0.00</h5>
                 </div>
             </div>
         </div>
@@ -111,6 +116,7 @@
                 <div class="input-field col s10">
                     <select class="teal-text" id="powersupply">
                         <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
                         @foreach (var item in Model.getPowersuppliesStock()) 
                         {
                             <option value="@item.getProductId()">@item.getName()</option>
@@ -119,7 +125,7 @@
                     <label>Select a Power Supply</label>
                 </div>
                 <div class="col s2">
-                    <h5 name="psuprice" class="right teal-text">$0.00</h5>
+                    <h5 id="psuprice" class="right teal-text">$0.00</h5>
                 </div>
            </div>
         </div>
@@ -129,6 +135,7 @@
                 <div class="input-field col s10">
                     <select class="teal-text" id="soundcard">
                         <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
                         @foreach (var item in Model.getSoundcardsStock()) 
                         {
                             <option value="@item.getProductId()">@item.getName()</option>
@@ -137,7 +144,7 @@
                     <label>Select a Sound Card</label>
                 </div>
                 <div class="col s2">
-                    <h5 name="scprice" class="right teal-text">$0.00</h5>
+                    <h5 id="scprice" class="right teal-text">$0.00</h5>
                 </div>
             </div>
         </div>
@@ -147,15 +154,16 @@
                 <div class="input-field col s10">
                     <select class="teal-text" id="os">
                         <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
                         @foreach (var item in Model.getOSStock()) 
                         {
-                            <option value="@item.getProductId() + ">@item.getName()</option>
+                            <option value="@item.getProductId()">@item.getName()</option>
                         }
                     </select>
                     <label>Select an Operating System</label>
                 </div>
                 <div class="col s2">
-                    <h5 name="osprice" class="right teal-text">$0.00</h5>
+                    <h5 id="osprice" class="right teal-text">$0.00</h5>
                 </div>
             </div>
         </div>
