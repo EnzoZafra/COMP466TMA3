@@ -18,7 +18,10 @@
     <form asp-controller="Shop" asp-action="Checkout" method="post">
         <div class="card-panel">
             <div class="row valign-wrapper">
-                <div class="input-field col s10">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/processor.jpeg">
+                </div>
+                <div class="input-field col s8">
                     <select class="teal-text" id="processor">
                         <option value="" disabled="" selected="">Choose your option</option>
                         <option value="-1">None</option>
@@ -37,7 +40,10 @@
         
         <div class="card-panel">
             <div class="row valign-wrapper">
-                <div class="input-field col s10">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/motherboard.jpg">
+                </div>
+                <div class="input-field col s8">
                     <select class="teal-text" id="motherboard">
                         <option value="" disabled="" selected="">Choose your option</option>
                         <option value="-1">None</option>
@@ -56,7 +62,10 @@
         
         <div class="card-panel">
             <div class="row valign-wrapper">
-                <div class="input-field col s10">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/memory.jpg">
+                </div>
+                <div class="input-field col s8">
                     <select class="teal-text" id="ram">
                         <option value="" disabled="" selected="">Choose your option</option>
                         <option value="-1">None</option>
@@ -75,7 +84,10 @@
         
         <div class="card-panel">
             <div class="row valign-wrapper">
-                <div class="input-field col s10">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/harddrive.jpg">
+                </div>
+                <div class="input-field col s8">
                     <select class="teal-text" id="harddrive">
                         <option value="" disabled="" selected="">Choose your option</option>
                         <option value="-1">None</option>
@@ -94,7 +106,10 @@
         
         <div class="card-panel">
             <div class="row valign-wrapper">
-                <div class="input-field col s10">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/videocard.png">
+                </div>
+                <div class="input-field col s8">
                     <select class="teal-text" id="videocard">
                         <option value="" disabled="" selected="">Choose your option</option>
                         <option value="-1">None</option>
@@ -113,7 +128,10 @@
         
         <div class="card-panel">
             <div class="row valign-wrapper">
-                <div class="input-field col s10">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/powersupply.jpg">
+                </div>
+                <div class="input-field col s8">
                     <select class="teal-text" id="powersupply">
                         <option value="" disabled="" selected="">Choose your option</option>
                         <option value="-1">None</option>
@@ -132,7 +150,10 @@
         
         <div class="card-panel">
             <div class="row valign-wrapper">
-                <div class="input-field col s10">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/soundcard.jpeg">
+                </div>
+                <div class="input-field col s8">
                     <select class="teal-text" id="soundcard">
                         <option value="" disabled="" selected="">Choose your option</option>
                         <option value="-1">None</option>
@@ -151,7 +172,10 @@
         
         <div class="card-panel">
             <div class="row valign-wrapper">
-                <div class="input-field col s10">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/operatingsystem.jpg">
+                </div>
+                <div class="input-field col s8">
                     <select class="teal-text" id="os">
                         <option value="" disabled="" selected="">Choose your option</option>
                         <option value="-1">None</option>
@@ -170,3 +194,7 @@
         
     </form>
 </div>
+
+<script>
+    var userObj = '@Html.Raw(Json.Serialize(Model.getComputer()))';    
+</script>

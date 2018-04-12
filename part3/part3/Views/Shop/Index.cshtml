@@ -37,11 +37,12 @@
                 </div>
               </div>
               <p>@item.getDescription()</p>
-              <div>
-                  <button class="btn waves-effect waves-light" type="submit" name="action">Configure
-                    <i class="material-icons right">settings</i>
-                  </button>
-              </div>
+                  <form asp-controller="Configurator" asp-action="Index" method="post">
+                      <input type="hidden" name="cid" value="@item.getProductId()" >
+                      <button class="btn waves-effect waves-light" type="submit">Configure
+                         <i class="material-icons right">settings</i>
+                      </button>
+                  </form>
             </div>
           </div>
         </div>

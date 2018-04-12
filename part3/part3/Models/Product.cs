@@ -7,6 +7,9 @@ namespace part3.Models
         private String Description;
         private double Price;
         private int ProductId;
+        
+        protected Product() {
+        }
 
         protected Product(int pid, string name, string desc, double price)
         {
@@ -39,6 +42,21 @@ namespace part3.Models
         public override String ToString()
         {
             return this.Name;
+        }
+        
+        public void setName(String name)
+        {
+            this.Name = name;
+        }
+
+        public void setDescription(String desc)
+        {
+            this.Description = desc;
+        }
+        
+        public void setPrice(double price)
+        {
+            this.Price = price;
         }
     }
 }

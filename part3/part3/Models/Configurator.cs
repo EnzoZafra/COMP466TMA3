@@ -16,12 +16,12 @@ namespace part3.Models
         private List<Part> Soundcards;
         private List<Software> Operatingsystems;
 
-        public Configurator(Computer computer, List<Part> cpus, List<Part> motherboards,
+        public Configurator(Computer comp, List<Part> cpus, List<Part> motherboards,
                             List<Part> rams, List<Part> harddrives, List<Part> videocards,
                             List<Part> powersupplies, List<Part> soundcards, List<Software> oss
                            )
         {
-            this.Computer = computer;
+            this.Computer = comp;
             this.Processors = cpus;
             this.Motherboards = motherboards;
             this.Rams = rams;

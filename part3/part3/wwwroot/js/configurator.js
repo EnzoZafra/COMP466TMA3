@@ -1,8 +1,5 @@
 ﻿prices = {}
 selectedPrice = {}
-initStore()
-updateTotal()
-storePrices("test")
 
 $("#processor").on('change', function() {
     selectedPrice["cpu"] = parseFloat(prices[$(this).val()] || 0);
@@ -114,7 +111,8 @@ function updateTotal() {
     }
 }
 
-function storePrices(obj) {
+function storePrices() {
+    //hardcoded db in part 4
     var counter = 0;
     for (var i = 0; i < 5; i++) 
     {
@@ -129,13 +127,43 @@ function storePrices(obj) {
     }
 }
 
-function initStore() {
-    selectedPrice["cpu"] = 0
-    selectedPrice["mb"] = 0
-    selectedPrice["ram"] = 0
-    selectedPrice["gpu"] = 0
-    selectedPrice["hdd"] = 0
-    selectedPrice["psu"] = 0
-    selectedPrice["sc"] = 0
-    selectedPrice["os"] = 0
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
 }
+
+function initStore() {
+    storePrices()
+    setSelectedItem()
+    $('#processor').trigger("change");
+    $('#motherboard').trigger("change");
+    $('#videocard').trigger("change");
+    $('#powersupply').trigger("change");
+    $('#harddrive').trigger("change");
+    $('#os').trigger("change");
+    $('#ram').trigger("change");
+    $('#soundcard').trigger("change");
+}
+
+function setSelectedItem() {
+    console.log(readCookie("pickedcpu"))
+    $('#processor').val(readCookie("pickedcpu"));
+    $('#motherboard').val(readCookie("pickedmb"));
+    $('#videocard').val(readCookie("pickedgpu"));
+    $('#powersupply').val(readCookie("pickedpsu"));
+    $('#harddrive').val(readCookie("pickedhdd"));
+    $('#os').val(readCookie("pickedos"));
+    $('#ram').val(readCookie("pickedram"));
+    $('#soundcard').val(readCookie("pickedsc"));
+
+    // re-initialize material-select
+    $('#myselect').material_select();
+}
+
+initStore()

@@ -16,6 +16,8 @@ namespace part3.Controllers
             List<Computer> prebuilt = new List<Computer>();
             List<Software> software = new List<Software>();
             List<Peripheral> peripherals = new List<Peripheral>();
+
+            // Hardcoded list of parts, DB for part 4
             int counter = 0;
             for (int i = 0; i < 5; i++) {
                 List<Part> partlist = new List<Part>();
@@ -41,7 +43,16 @@ namespace part3.Controllers
                 String desc = "This computer has a " + part1.getName() + ", " + part2.getName() + ", "
                                 + part3.getName() + ", " + part4.getName() + ", " + part5.getName() + ", "
                                 + part6.getName() + ", " + part7.getName() + ", " + os.getName();
-                Computer comp = new Computer("Computer " + i, partlist, os, desc);
+
+                double price = 0;
+                
+                foreach (var item in partlist) {
+                  price += item.getPrice();
+                }
+                price += os.getPrice();
+                
+                // Hardcoded list of comps
+                Computer comp = new Computer(i, "Computer " + i, partlist, os, desc, price*0.9);
 
                 prebuilt.Add(comp);
                 hardware.Add(part1);
@@ -53,6 +64,7 @@ namespace part3.Controllers
                 hardware.Add(part7);
 
             }
+            // end of hardcoded list
 
             Shop shop = new Shop(prebuilt, hardware, software, peripherals);
 

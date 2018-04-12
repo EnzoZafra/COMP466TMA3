@@ -4,24 +4,20 @@ using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
 
 namespace part3.Models
 {
-    public class Computer
+    public class Computer : Product
     {
-        private String Name { get; set; }
         private List<Part> Parts { get; set; }
-        private String Description { get; set; }
         private Software OperatingSystem { get; set; }
 
-        public Computer(String name, List<Part> parts, Software os, String desc)
+        public Computer() {
+          this.Parts = new List<Part>();
+        }
+        
+        public Computer(int compid, String name, List<Part> parts, Software os, String desc, double price)
+        : base(compid, name, desc, price)
         {
-            this.Name = name;
             this.Parts = parts;
             this.OperatingSystem = os;
-            this.Description = desc;
-        }
-
-        public String getName()
-        {
-            return Name;
         }
 
         public Software getOperatingSystem()
@@ -29,40 +25,19 @@ namespace part3.Models
             return OperatingSystem;
         }
 
-        public String getDescription()
-        {
-            return Description;
-        }
-
-        public double getPrice()
-        {
-            double sum = 0;
-            foreach (Part item in Parts) sum += item.getPrice();
-            if (OperatingSystem != null) {
-                sum += OperatingSystem.getPrice();
-            }
-
-            return sum;
-        }
-
         public List<Part> getParts()
         {
             return Parts;
-        }
-
-        public void setName(String name)
-        {
-            this.Name = name;
         }
 
         public void setOperatingSystem(Software os)
         {
             this.OperatingSystem = os;
         }
-
-        public void setDescription(String desc)
+        
+        public void setParts(List<Part> partslist)
         {
-            this.Description = desc;
+           this.Parts = partslist;
         }
     }
 }
