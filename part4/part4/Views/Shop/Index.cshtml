@@ -1,0 +1,171 @@
+﻿@model part3.Models.Shop
+@{
+    ViewData["Title"] = "PC Express Shop";
+}
+@section Scripts
+{
+    <script src="@Url.Content("~/js/shop.js")"></script>
+}
+<div id="cartmodal" class="pricebox card-panel modal">
+    <div class="modal-content">
+        <h5 class="teal-text">Successfully added to cart!</h5>
+         <br>
+        <h6>To checkout, visit 'Checkout' in the navigation bar</h6>
+    </div>
+</div>
+
+<div class="card-panel">
+<div class="input-field">
+    <i class="material-icons prefix">search</i>
+    <input id="icon_prefix" type="text" class="validate">
+    <label for="icon_prefix">Search Product</label>
+</div>
+<div>
+    <ul class="tabs">
+        <li class="tab col s3"><a class="teal-text" href="#prebuilt">Prebuilt Configurations</a></li>
+        <li class="tab col s3"><a class="teal-text" href="#hardware">Computer Hardware</a></li>
+        <li class="tab col s3"><a class="teal-text" href="#peripherals">Peripherals</a></li>
+        <li class="tab col s3"><a class="teal-text" href="#software">Software</a></li>
+    </ul>
+</div>
+<hr>
+<div id="prebuilt">
+  <div class="row">
+    @foreach (var item in Model.getPrebuiltConfigurations())
+    {
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+              <img src="images/computer.jpg" >
+              <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCart(@item.getProductId())"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+            <div class="card-content">
+              <div class="card-title pink-text row">
+                <div class="col s8">
+                    @item.getName()
+                </div>
+                <div class="col s4">
+                    <h6>$@item.getPrice().ToString("0.00")</h6>
+                </div>
+              </div>
+              <p>@item.getDescription()</p>
+                  <form asp-controller="Configurator" asp-action="Index" method="post">
+                      <input type="hidden" name="cid" value="@item.getProductId()" >
+                      <button class="btn waves-effect waves-light" type="submit">Configure
+                         <i class="material-icons right">settings</i>
+                      </button>
+                  </form>
+            </div>
+          </div>
+        </div>
+    }
+  </div>
+</div>
+<div id="hardware">
+  <div class="row">
+        @foreach (var item in Model.getHardware())
+        {
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+              @if (item.getType() == "VideoCard") {
+                <img class="mycard-image" src="images/videocard.png">
+              }
+              @if (item.getType() == "Processor") {
+                <img class="mycard-image" src="images/processor.jpeg">
+              }
+              @if (item.getType() == "Motherboard") {
+                <img class="mycard-image" src="images/motherboard.jpg">
+              }
+              @if (item.getType() == "RAM") {
+                <img class="mycard-image" src="images/memory.jpg">
+              }
+              @if (item.getType() == "SoundCard") {
+                <img class="mycard-image" src="images/soundcard.jpeg">
+              }
+              @if (item.getType() == "Software") {
+                <img class="mycard-image" src="images/operatingsystem.jpg">
+              }
+              @if (item.getType() == "Harddrive") {
+                <img class="mycard-image" src="images/harddrive.jpg">
+              }
+              @if (item.getType() == "PowerSupply") {
+                <img class="mycard-image" src="images/powersupply.jpg">
+              }
+              <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCart(@item.getProductId())"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+            <div class="card-content">
+              <div class="card-title pink-text row">
+                <div class="col s8">
+                    @item.getName()
+                </div>
+                <div class="col s4">
+                    <h6>$@item.getPrice().ToString("0.00")</h6>
+                </div>
+              </div>
+                <div class="col s4">
+                    <p>@item.getType()</p>
+                </div>
+            </div>
+          </div>
+        </div>
+    }
+  </div>
+</div>
+<div id="peripherals">
+    <div class="row">
+        @foreach (var item in Model.getPeripherals())
+        {
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+               <img class="mycard-image" src="images/someimg.jpg">
+               <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCart(@item.getProductId())"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+            <div class="card-content">
+            <div class="card-title pink-text row">
+                <div class="col s8">
+                    @item.getName()
+                </div>
+                <div class="col s4">
+                    <h6>$@item.getPrice().ToString("0.00")</h6>
+                </div>
+              </div>
+              <p>
+                @item.getDescription()
+              </p>
+            </div>
+          </div>
+        </div>
+    }
+  </div>
+</div>
+<div id="software">
+    <div class="row">
+        @foreach (var item in Model.getSoftware())
+        {
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image">
+               <img class="mycard-image" src="images/operatingsystem.jpg">
+               <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCart(@item.getProductId())"><i class="material-icons">add_shopping_cart</i></a>
+            </div>
+            <div class="card-content">
+            <div class="card-title pink-text row">
+                <div class="col s8">
+                    @item.getName()
+                </div>
+                <div class="col s4">
+                    <h6>$@item.getPrice().ToString("0.00")</h6>
+                </div>
+              </div>
+              <p>
+                @item.getDescription()
+              </p>
+            </div>
+          </div>
+        </div>
+    }
+  </div>
+</div>
+</div>

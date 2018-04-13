@@ -1,0 +1,210 @@
+﻿@model part3.Models.Configurator
+@{
+    ViewData["Title"] = "PC Express Configurator";
+}
+@section Scripts
+{
+    <script src="@Url.Content("~/js/configurator.js")"></script>
+}
+<div class="pricebox card-panel teal-text">
+    <h5>Your total:</h5>
+    <h4 id="totalprice">$@Model.getComputer().getPrice().ToString()</h4>
+    <form asp-controller="Shop" asp-action="Checkout" method="post" onsubmit="buynow()">
+        <input type="hidden" name="cart" id="cartinput">
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="buybtn">Buy
+            <i class="material-icons right">shopping_cart</i>
+        </button>
+    </form>
+</div>
+
+<div class="card-panel">
+    <div class="row valign-wrapper">
+        <h4 class="teal-text col s9">PC Configurator: </h4>
+        <button class="waves-effect waves-light btn col s3" 
+                onclick="location.href='@Url.Action("ClearSelection", "Configurator")'">
+            Clear Selection
+        </button>
+    </div>
+    <form asp-controller="Shop" asp-action="Checkout" method="post">
+        <div class="card-panel">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/processor.jpeg">
+                </div>
+                <div class="input-field col s8">
+                    <select class="teal-text" id="processor">
+                        <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
+                        @foreach (var item in Model.getProcessorsStock()) 
+                        {
+                            <option value="@item.getProductId()">@item.getName()</option>
+                        }
+                    </select>
+                    <label>Select a Processor</label>
+                </div>
+                <div class="col s2">
+                    <h5 id="cpuprice" class="right teal-text">$0.00</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-panel">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/motherboard.jpg">
+                </div>
+                <div class="input-field col s8">
+                    <select class="teal-text" id="motherboard">
+                        <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
+                        @foreach (var item in Model.getMotherboardsStock()) 
+                        {
+                            <option value="@item.getProductId()">@item.getName()</option>
+                        }
+                    </select>
+                    <label>Select a Motherboard</label>
+                </div>
+                <div class="col s2">
+                    <h5 id="mbprice" class="right teal-text">$0.00</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-panel">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/memory.jpg">
+                </div>
+                <div class="input-field col s8">
+                    <select class="teal-text" id="ram">
+                        <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
+                        @foreach (var item in Model.getRamsStock()) 
+                        {
+                            <option value="@item.getProductId()">@item.getName()</option>
+                        }
+                    </select>
+                    <label>Select a RAM</label>
+                </div>
+                <div class="col s2">
+                    <h5 id="ramprice" class="right teal-text">$0.00</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-panel">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/harddrive.jpg">
+                </div>
+                <div class="input-field col s8">
+                    <select class="teal-text" id="harddrive">
+                        <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
+                        @foreach (var item in Model.getHarddrivesStock()) 
+                        {
+                            <option value="@item.getProductId()">@item.getName()</option>
+                        }
+                    </select>
+                    <label>Select a Harddrive</label>
+                </div>
+                <div class="col s2">
+                    <h5 id="hddprice" class="right teal-text">$0.00</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-panel">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/videocard.png">
+                </div>
+                <div class="input-field col s8">
+                    <select class="teal-text" id="videocard">
+                        <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
+                        @foreach (var item in Model.getVideocardsStock()) 
+                        {
+                            <option value="@item.getProductId()">@item.getName()</option>
+                        }
+                    </select>
+                    <label>Select a Video Card</label>
+                </div>
+                <div class="col s2">
+                    <h5 id="gpuprice" class="right teal-text">$0.00</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-panel">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/powersupply.jpg">
+                </div>
+                <div class="input-field col s8">
+                    <select class="teal-text" id="powersupply">
+                        <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
+                        @foreach (var item in Model.getPowersuppliesStock()) 
+                        {
+                            <option value="@item.getProductId()">@item.getName()</option>
+                        }
+                    </select>
+                    <label>Select a Power Supply</label>
+                </div>
+                <div class="col s2">
+                    <h5 id="psuprice" class="right teal-text">$0.00</h5>
+                </div>
+           </div>
+        </div>
+        
+        <div class="card-panel">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/soundcard.jpeg">
+                </div>
+                <div class="input-field col s8">
+                    <select class="teal-text" id="soundcard">
+                        <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
+                        @foreach (var item in Model.getSoundcardsStock()) 
+                        {
+                            <option value="@item.getProductId()">@item.getName()</option>
+                        }
+                    </select>
+                    <label>Select a Sound Card</label>
+                </div>
+                <div class="col s2">
+                    <h5 id="scprice" class="right teal-text">$0.00</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-panel">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img class="configimg" src="~/images/operatingsystem.jpg">
+                </div>
+                <div class="input-field col s8">
+                    <select class="teal-text" id="os">
+                        <option value="" disabled="" selected="">Choose your option</option>
+                        <option value="-1">None</option>
+                        @foreach (var item in Model.getOSStock()) 
+                        {
+                            <option value="@item.getProductId()">@item.getName()</option>
+                        }
+                    </select>
+                    <label>Select an Operating System</label>
+                </div>
+                <div class="col s2">
+                    <h5 id="osprice" class="right teal-text">$0.00</h5>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+</div>
+
+<script>
+    var userObj = '@Html.Raw(Json.Serialize(Model.getComputer()))';    
+</script>

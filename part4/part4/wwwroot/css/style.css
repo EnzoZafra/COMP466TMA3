@@ -1,0 +1,17 @@
+﻿.tabs .indicator {
+    background-color: #008080 !important
+}
+
+.pricebox {
+    position: fixed;
+    top: 68%;
+    right: 0.5%
+}
+
+.configimg {
+  max-width: 75px
+}
+
+.collection .collection-item.avatar {
+    padding-left: 15px !important
+}
