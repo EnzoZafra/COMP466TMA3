@@ -58,5 +58,6 @@
   <ItemGroup>
     <None Remove="wwwroot\js\script.js" />
     <None Remove="Views\New Folder\Index.cshtml" />
+    <None Remove="wwwroot\js\cart.js" />
   </ItemGroup>
 </Project>
