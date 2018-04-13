@@ -6,7 +6,7 @@ cart = ""
 function buynow() {
     cart = ""
     for (var key in selectedItem) {
-        cart += key + "~" + selectedItem[key] + '/'
+        cart += selectedItem[key] + '/'
     }
     document.cookie = 'cart=' + cart
     return true;

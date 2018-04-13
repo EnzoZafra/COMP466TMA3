@@ -77,81 +77,57 @@ namespace part3.Controllers
             List<Software> software = new List<Software>();
             List<Peripheral> peripherals = new List<Peripheral>();
 
-            // TODO: remove this for part 4
-            Dictionary<String, String> temp = new Dictionary<string, string>();
-
             List<Product> productstobuy = new List<Product>();
             String cart = Request.Cookies["cart"];
             if (!string.IsNullOrEmpty(cart)) {
                 String[] parts = cart.Split('/');
                 List<string> productids = new List<string>();
+                Console.WriteLine("TEST");
                 foreach (var part in parts)
                 {
                     if (!string.IsNullOrEmpty(part))
                     {
-                        String[] keyvaluepair = part.Split('~');
-                        temp.Add(keyvaluepair[0], keyvaluepair[1]);
-
                         // If selected none, ignore
-                        if (keyvaluepair[1] == "-1")
+                        if (part != "-1")
                         {
-                            continue;
-                        }
-                        else
-                        {
-                            if (keyvaluepair[0] == "os")
-                            {
-                                // Make db call for part 4 ("Select * from software where id = keyvaluepair[1]")
-                                Software os = new Software(int.Parse(keyvaluepair[1]), "Operating System" + keyvaluepair[1],
-                                                           "A Windows Operating System", 119.99);
-                                productstobuy.Add(os);
-                            }
-                            else
-                            {
-                                productids.Add(keyvaluepair[1]);
-                            }
+                            Console.WriteLine(part);
+                            productids.Add(part);
                         }
                     }
                 }
                 // Make db call for part 4 (Select * from products where id in [product id array] instead of below
 
-                // Dont need these ifstatements if using A DB
-                if (temp["gpu"] != "-1")
-                {
-                    Part part1 = new Part(int.Parse(temp["gpu"]), "VideoCard " + temp["gpu"], "Dual HDMI, DUAL DP", "VideoCard", 499.99);
-                    productstobuy.Add(part1);
-                }
-                if (temp["cpu"] != "-1")
-                {
-                    Part part2 = new Part(int.Parse(temp["cpu"]), "Processor " + temp["cpu"], "6-Core 3.2 GHz", "Processor", 374.99);
-                    productstobuy.Add(part2);
-                }
-                if (temp["hdd"] != "-1")
-                {
-                    Part part3 = new Part(int.Parse(temp["hdd"]), "Harddrive " + temp["hdd"], "2 Terabyte Drive", "Harddrive", 89.99);
-                    productstobuy.Add(part3);
-                }
-                if (temp["ram"] != "-1")
-                {
-                    Part part4 = new Part(int.Parse(temp["ram"]), "RAM " + temp["ram"], "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
-                    productstobuy.Add(part4);
-                }
-                if (temp["mb"] != "-1")
-                {
-                    Part part5 = new Part(int.Parse(temp["mb"]), "Motherboard " + temp["mb"], "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
-                    productstobuy.Add(part5);
-                }
-                if (temp["sc"] != "-1")
-                {
-                    Part part6 = new Part(int.Parse(temp["sc"]), "Sound Card" + temp["sc"], "7.1 Surround Sound", "SoundCard", 49.99);
-                    productstobuy.Add(part6);
-                }
-                if (temp["psu"] != "-1")
-                {
-                    Part part7 = new Part(int.Parse(temp["psu"]), "Power Supply" + temp["psu"], "Gold 550w Modular", "PowerSupply", 89.99);
-                    productstobuy.Add(part7);
-                }
+                // TODO: remove this for part 4
+                Dictionary<int, Product> temp = new Dictionary<int, Product>();
+                int counter = 0;
+                for (int i = 0; i < 5; i++) {
+                    Part part1 = new Part(++counter, "VideoCard " + i, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
+                    temp.Add(counter, part1);
+                    Part part2 = new Part(++counter, "Processor " + i, "6-Core 3.2 GHz", "Processor", 374.99);
+                    temp.Add(counter, part2);
+                    Part part3 = new Part(++counter, "Harddrive " + i, "2 Terabyte Drive", "Harddrive", 89.99);
+                    temp.Add(counter, part3);
+                    Part part4 = new Part(++counter, "RAM " + i, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
+                    temp.Add(counter, part4);
+                    Part part5 = new Part(++counter, "Motherboard " + i, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
+                    temp.Add(counter, part5);
+                    Part part6 = new Part(++counter, "Sound Card" + i, "7.1 Surround Sound", "SoundCard", 49.99);
+                    temp.Add(counter, part6);
+                    Part part7 = new Part(++counter, "Power Supply" + i, "Gold 550w Modular", "PowerSupply", 89.99);
+                    temp.Add(counter, part7);
 
+                    Software os = new Software(++counter, "Operating System" + i, "A Windows Operating System", 119.99);
+
+                    temp.Add(counter, os);
+                }
+                // end of hardcoded list
+
+                foreach(string pid in productids) {
+                    Product p = temp[int.Parse(pid)];
+                    if (p != null) {
+                        productstobuy.Add(p);
+                    }
+                }
             }
 
             Checkout checkout = new Checkout(productstobuy);
