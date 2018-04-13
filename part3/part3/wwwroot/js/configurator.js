@@ -8,7 +8,6 @@ function buynow() {
     for (var key in selectedItem) {
         cart += key + "~" + selectedItem[key] + '/'
     }
-//    document.getElementById("cartinput").value = cart;
     document.cookie = 'cart=' + cart
     return true;
 }
@@ -17,12 +16,7 @@ $("#processor").on('change', function() {
     selectedItem["cpu"] = $(this).val();
     selectedPrice["cpu"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["cpu"]
-    if (price == 0) { 
-        document.getElementById("cpuprice").innerHTML = "$" + price + ".00";
-    }
-    else {
-        document.getElementById("cpuprice").innerHTML = "$" + price;
-    }
+    document.getElementById("cpuprice").innerHTML = "$" + price.toFixed(2);
     updateTotal()
 });
 
@@ -30,12 +24,7 @@ $("#motherboard").on('change', function() {
     selectedItem["mb"] = $(this).val();
     selectedPrice["mb"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["mb"]
-    if (price == 0) { 
-        document.getElementById("mbprice").innerHTML = "$" + price + ".00";
-    }
-    else {
-        document.getElementById("mbprice").innerHTML = "$" + price;
-    }
+    document.getElementById("mbprice").innerHTML = "$" + price.toFixed(2);
     updateTotal()
 });
 
@@ -43,12 +32,7 @@ $("#ram").on('change', function() {
     selectedItem["ram"] = $(this).val();
     selectedPrice["ram"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["ram"]
-    if (price == 0) { 
-        document.getElementById("ramprice").innerHTML = "$" + price + ".00";
-    }
-    else {
-        document.getElementById("ramprice").innerHTML = "$" + price;
-    }
+    document.getElementById("ramprice").innerHTML = "$" + price.toFixed(2);
     updateTotal()
 });
 
@@ -56,12 +40,7 @@ $("#harddrive").on('change', function() {
     selectedItem["hdd"] = $(this).val();
     selectedPrice["hdd"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["hdd"]
-    if (price == 0) { 
-        document.getElementById("hddprice").innerHTML = "$" + price + ".00";
-    }
-    else {
-        document.getElementById("hddprice").innerHTML = "$" + price;
-    }
+    document.getElementById("hddprice").innerHTML = "$" + price.toFixed(2);
     updateTotal()
 });
 
@@ -69,12 +48,7 @@ $("#videocard").on('change', function() {
     selectedItem["gpu"] = $(this).val();
     selectedPrice["gpu"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["gpu"]
-    if (price == 0) { 
-        document.getElementById("gpuprice").innerHTML = "$" + price + ".00";
-    }
-    else {
-        document.getElementById("gpuprice").innerHTML = "$" + price;
-    }
+    document.getElementById("gpuprice").innerHTML = "$" + price.toFixed(2);
     updateTotal()
 });
 
@@ -82,12 +56,7 @@ $("#powersupply").on('change', function() {
     selectedItem["psu"] = $(this).val();
     selectedPrice["psu"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["psu"]
-    if (price == 0) { 
-        document.getElementById("psuprice").innerHTML = "$" + price + ".00";
-    }
-    else {
-        document.getElementById("psuprice").innerHTML = "$" + price;
-    }
+    document.getElementById("psuprice").innerHTML = "$" + price.toFixed(2);
     updateTotal()
 });
 
@@ -95,12 +64,7 @@ $("#soundcard").on('change', function() {
     selectedItem["sc"] = $(this).val();
     selectedPrice["sc"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["sc"]
-    if (price == 0) { 
-        document.getElementById("scprice").innerHTML = "$" + price + ".00";
-    }
-    else {
-        document.getElementById("scprice").innerHTML = "$" + price;
-    }
+    document.getElementById("scprice").innerHTML = "$" + price.toFixed(2);
     updateTotal()
 });
 
@@ -108,12 +72,7 @@ $("#os").on('change', function() {
     selectedItem["os"] = $(this).val();
     selectedPrice["os"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["os"]
-    if (price == 0) { 
-        document.getElementById("osprice").innerHTML = "$" + price + ".00";
-    }
-    else {
-        document.getElementById("osprice").innerHTML = "$" + price;
-    }
+    document.getElementById("osprice").innerHTML = "$" + price.toFixed(2);
     updateTotal()
 });
 
@@ -122,22 +81,11 @@ function updateTotal() {
                 + selectedPrice["ram"] + selectedPrice["hdd"]
                 + selectedPrice["gpu"] + selectedPrice["psu"]
                 + selectedPrice["sc"] + selectedPrice["os"]
-                
-    if (total == 0) { 
-        document.getElementById("totalprice").innerHTML = "$" + total + ".00";
-    }
-    else {
-        document.getElementById("totalprice").innerHTML = "$" + total;
-    }
-}
-
-function createCartString(selectedItem) {
-    var cartstring = JSON.stringify(selectedItem);
-    return cartstring;
+    document.getElementById("totalprice").innerHTML = "$" + total.toFixed(2);
 }
 
 function storePrices() {
-    //hardcoded db in part 4
+    //TODO: hardcoded db in part 4
     var counter = 0;
     for (var i = 0; i < 5; i++) 
     {
