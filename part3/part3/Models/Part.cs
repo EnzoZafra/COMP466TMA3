@@ -3,16 +3,10 @@ namespace part3.Models
 {
     public class Part : Product
     {
-        String Type;
         public Part(int pid, String name, String desc, String type, double price) 
-            : base(pid, name, desc, price)
+            : base(pid, name, desc, type, price)
         {
-            this.Type = type;
         }
 
-        public String getType()
-        {
-            return Type;
-        }
     }
 }

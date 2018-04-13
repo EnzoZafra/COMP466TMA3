@@ -9,9 +9,12 @@
 <div class="pricebox card-panel teal-text">
     <h5>Your total:</h5>
     <h4 id="totalprice">$@Model.getComputer().getPrice().ToString()</h4>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Buy
-        <i class="material-icons right">shopping_cart</i>
-    </button>
+    <form asp-controller="Shop" asp-action="Checkout" method="post" onsubmit="buynow()">
+        <input type="hidden" name="cart" id="cartinput">
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="buybtn">Buy
+            <i class="material-icons right">shopping_cart</i>
+        </button>
+    </form>
 </div>
 
 <div class="card-panel">

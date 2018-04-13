@@ -14,7 +14,7 @@ namespace part3.Models
         }
         
         public Computer(int compid, String name, List<Part> parts, Software os, String desc, double price)
-        : base(compid, name, desc, price)
+        : base(compid, name, desc, "Computer", price)
         {
             this.Parts = parts;
             this.OperatingSystem = os;

@@ -17,7 +17,7 @@ namespace part3.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Need help? Contact us.";
 
             return View();
         }

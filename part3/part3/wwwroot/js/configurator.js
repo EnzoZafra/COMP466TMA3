@@ -1,7 +1,20 @@
 ﻿prices = {}
 selectedPrice = {}
+selectedItem = {}
+cart = ""
+
+function buynow() {
+    cart = ""
+    for (var key in selectedItem) {
+        cart += key + "~" + selectedItem[key] + '/'
+    }
+//    document.getElementById("cartinput").value = cart;
+    document.cookie = 'cart=' + cart
+    return true;
+}
 
 $("#processor").on('change', function() {
+    selectedItem["cpu"] = $(this).val();
     selectedPrice["cpu"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["cpu"]
     if (price == 0) { 
@@ -14,6 +27,7 @@ $("#processor").on('change', function() {
 });
 
 $("#motherboard").on('change', function() {
+    selectedItem["mb"] = $(this).val();
     selectedPrice["mb"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["mb"]
     if (price == 0) { 
@@ -26,6 +40,7 @@ $("#motherboard").on('change', function() {
 });
 
 $("#ram").on('change', function() {
+    selectedItem["ram"] = $(this).val();
     selectedPrice["ram"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["ram"]
     if (price == 0) { 
@@ -38,6 +53,7 @@ $("#ram").on('change', function() {
 });
 
 $("#harddrive").on('change', function() {
+    selectedItem["hdd"] = $(this).val();
     selectedPrice["hdd"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["hdd"]
     if (price == 0) { 
@@ -50,6 +66,7 @@ $("#harddrive").on('change', function() {
 });
 
 $("#videocard").on('change', function() {
+    selectedItem["gpu"] = $(this).val();
     selectedPrice["gpu"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["gpu"]
     if (price == 0) { 
@@ -62,6 +79,7 @@ $("#videocard").on('change', function() {
 });
 
 $("#powersupply").on('change', function() {
+    selectedItem["psu"] = $(this).val();
     selectedPrice["psu"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["psu"]
     if (price == 0) { 
@@ -74,6 +92,7 @@ $("#powersupply").on('change', function() {
 });
 
 $("#soundcard").on('change', function() {
+    selectedItem["sc"] = $(this).val();
     selectedPrice["sc"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["sc"]
     if (price == 0) { 
@@ -86,6 +105,7 @@ $("#soundcard").on('change', function() {
 });
 
 $("#os").on('change', function() {
+    selectedItem["os"] = $(this).val();
     selectedPrice["os"] = parseFloat(prices[$(this).val()] || 0);
     var price = selectedPrice["os"]
     if (price == 0) { 
@@ -109,6 +129,11 @@ function updateTotal() {
     else {
         document.getElementById("totalprice").innerHTML = "$" + total;
     }
+}
+
+function createCartString(selectedItem) {
+    var cartstring = JSON.stringify(selectedItem);
+    return cartstring;
 }
 
 function storePrices() {
@@ -152,7 +177,6 @@ function initStore() {
 }
 
 function setSelectedItem() {
-    console.log(readCookie("pickedcpu"))
     $('#processor').val(readCookie("pickedcpu"));
     $('#motherboard').val(readCookie("pickedmb"));
     $('#videocard').val(readCookie("pickedgpu"));

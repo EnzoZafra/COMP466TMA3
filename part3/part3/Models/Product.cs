@@ -5,17 +5,19 @@ namespace part3.Models
     {
         private String Name;
         private String Description;
+        private String Type;
         private double Price;
         private int ProductId;
         
         protected Product() {
         }
 
-        protected Product(int pid, string name, string desc, double price)
+        protected Product(int pid, string name, string desc, string type, double price)
         {
             ProductId = pid;
             Name = name;
             Description = desc;
+            Type = type;
             Price = price;
         }
 
@@ -27,6 +29,11 @@ namespace part3.Models
         public String getName()
         {
             return Name;
+        }
+
+        public String getType()
+        {
+            return Type;
         }
 
         public String getDescription()
@@ -57,6 +64,11 @@ namespace part3.Models
         public void setPrice(double price)
         {
             this.Price = price;
+        }
+
+        public void setType(String type)
+        {
+            this.Type = type;
         }
     }
 }

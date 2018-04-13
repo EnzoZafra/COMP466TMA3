@@ -70,5 +70,60 @@ namespace part3.Controllers
 
             return View(shop);
         }
+
+        public IActionResult Checkout()
+        {
+            List<Part> hardware = new List<Part>();
+            List<Software> software = new List<Software>();
+            List<Peripheral> peripherals = new List<Peripheral>();
+
+            // TODO: remove this for part 4
+            Dictionary<String, String> temp = new Dictionary<string, string>();
+
+            String cart = Request.Cookies["cart"];
+            String[] parts = cart.Split('/');
+            List<Product> productstobuy = new List<Product>();
+            List<string> productids = new List<string>();
+            foreach(var part in parts) {
+                if (!string.IsNullOrEmpty(part)) {
+                    String[] keyvaluepair = part.Split('~');
+                    temp.Add(keyvaluepair[0], keyvaluepair[1]);
+
+                    // If selected none, ignore
+                    if(keyvaluepair[1] == "-1") {
+                        continue;
+                    }
+                    if (keyvaluepair[0] == "os")
+                    {
+                        // Make db call for part 4 ("Select * from software where id = keyvaluepair[1]")
+                        Software os = new Software(int.Parse(keyvaluepair[1]), "Operating System" + keyvaluepair[1],
+                                                   "A Windows Operating System", 119.99);
+                        productstobuy.Add(os);
+                    }
+                    else
+                    {
+                        productids.Add(keyvaluepair[1]);
+                    }
+                }
+            }
+            // Make db call for part 4 (Select * from products where id in [product id array] instead of below
+            Part part1 = new Part(int.Parse(temp["gpu"]), "VideoCard " + temp["gpu"], "Dual HDMI, DUAL DP", "VideoCard", 499.99);
+            Part part2 = new Part(int.Parse(temp["cpu"]), "Processor " + temp["cpu"], "6-Core 3.2 GHz", "Processor", 374.99);
+            Part part3 = new Part(int.Parse(temp["hdd"]), "Harddrive " + temp["hdd"], "2 Terabyte Drive", "Harddrive", 89.99);
+            Part part4 = new Part(int.Parse(temp["ram"]), "RAM " + temp["ram"], "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
+            Part part5 = new Part(int.Parse(temp["mb"]), "Motherboard " + temp["mb"], "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
+            Part part6 = new Part(int.Parse(temp["sc"]), "Sound Card" + temp["sc"], "7.1 Surround Sound", "SoundCard", 49.99);
+            Part part7 = new Part(int.Parse(temp["psu"]), "Power Supply" + temp["psu"], "Gold 550w Modular", "PowerSupply", 89.99);
+            productstobuy.Add(part1);
+            productstobuy.Add(part2);
+            productstobuy.Add(part3);
+            productstobuy.Add(part4);
+            productstobuy.Add(part5);
+            productstobuy.Add(part6);
+            productstobuy.Add(part7);
+
+            Checkout checkout = new Checkout(productstobuy);
+            return View(checkout);
+        }
     }
 }

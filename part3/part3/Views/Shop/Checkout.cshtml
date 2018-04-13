@@ -1,0 +1,44 @@
+﻿@model part3.Models.Checkout
+@{
+    ViewData["Title"] = "PC Express Checkout";
+}
+
+<div class="card-panel">
+  <h4 class="teal-text">Checkout: </h4>
+  <ul class="collection">
+    @foreach (var item in Model.getCart())
+    {
+       <li class="collection-item avatar">
+          @if (item.getType() == "VideoCard") {
+            <img class="configimg" src="~/images/videocard.png">
+          }
+          @if (item.getType() == "Processor") {
+            <img class="configimg" src="~/images/processor.jpeg">
+          }
+          @if (item.getType() == "Motherboard") {
+            <img class="configimg" src="~/images/motherboard.jpg">
+          }
+          @if (item.getType() == "RAM") {
+            <img class="configimg" src="~/images/memory.jpg">
+          }
+          @if (item.getType() == "SoundCard") {
+            <img class="configimg" src="~/images/soundcard.jpeg">
+          }
+          @if (item.getType() == "Software") {
+            <img class="configimg" src="~/images/operatingsystem.jpg">
+          }
+          @if (item.getType() == "Harddrive") {
+            <img class="configimg" src="~/images/harddrive.jpg">
+          }
+          @if (item.getType() == "PowerSupply") {
+            <img class="configimg" src="~/images/powersupply.jpg">
+          }
+          <span class="title"><b>@item.getName()</b></span>
+          <hr>
+          <p>@item.getDescription() <br>
+          </p>
+          <h5 class="secondary-content">$@item.getPrice()</h5>
+        </li> 
+    }
+  </ul>
+</div>
