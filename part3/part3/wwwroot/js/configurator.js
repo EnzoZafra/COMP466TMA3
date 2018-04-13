@@ -1,14 +1,23 @@
 ﻿prices = {}
 selectedPrice = {}
 selectedItem = {}
-cart = ""
 
 function buynow() {
-    cart = ""
+    var cart = ""
     for (var key in selectedItem) {
-        cart += selectedItem[key] + '/'
+        if(selectedItem[key] != null) {
+            cart += selectedItem[key] + '/'
+        }
     }
-    document.cookie = 'cart=' + cart
+    console.log(cart)
+    var cookie = readCookie("cart")
+    if (cookie != null) {
+        cookie = "cart=" + cookie + cart
+    }
+    else {
+        cookie = "cart=" + cart
+    }
+    document.cookie = cookie;
     return true;
 }
 
@@ -97,18 +106,8 @@ function storePrices() {
         prices[++counter] = 49.99
         prices[++counter] = 89.99
         prices[++counter] = 119.99
+        ++counter
     }
-}
-
-function readCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
 }
 
 function initStore() {

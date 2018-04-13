@@ -37,6 +37,7 @@ namespace part3.Controllers
             Part ps = new Part(++counter, "Power Supply" + i, "Gold 550w Modular", "PowerSupply", 89.99);
 
             Software os = new Software(++counter, "Operating System" + i, "A Windows Operating System", 119.99);
+            ++counter;
 
             oss.Add(os);
             gpus.Add(gpu);
@@ -61,14 +62,14 @@ namespace part3.Controllers
             if(!string.IsNullOrEmpty(cid)) {
                 int cidint = int.Parse(cid);
                  // This should be a database search in part 4 instead of hard code. 
-                Part part1 = new Part((cidint*8)+1, "VideoCard " + cid, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
-                Part part2 = new Part((cidint*8)+2, "Processor " + cid, "6-Core 3.2 GHz", "Processor", 374.99);
-                Part part3 = new Part((cidint*8)+3, "Harddrive " + cid, "2 Terabyte Drive", "Harddrive", 89.99);
-                Part part4 = new Part((cidint*8)+4, "RAM " + cid, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
-                Part part5 = new Part((cidint*8)+5, "Motherboard " + cid, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
-                Part part6 = new Part((cidint*8)+6, "Sound Card" + cid, "7.1 Surround Sound", "SoundCard", 49.99);
-                Part part7 = new Part((cidint*8)+7, "Power Supply" + cid, "Gold 550w Modular", "PowerSupply", 89.99);
-                Software os = new Software((cidint*8)+8, "Operating System" + cid, "A Windows Operating System", 119.99);
+                Part part1 = new Part((cidint*9)+1, "VideoCard " + cid, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
+                Part part2 = new Part((cidint*9)+2, "Processor " + cid, "6-Core 3.2 GHz", "Processor", 374.99);
+                Part part3 = new Part((cidint*9)+3, "Harddrive " + cid, "2 Terabyte Drive", "Harddrive", 89.99);
+                Part part4 = new Part((cidint*9)+4, "RAM " + cid, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
+                Part part5 = new Part((cidint*9)+5, "Motherboard " + cid, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
+                Part part6 = new Part((cidint*9)+6, "Sound Card" + cid, "7.1 Surround Sound", "SoundCard", 49.99);
+                Part part7 = new Part((cidint*9)+7, "Power Supply" + cid, "Gold 550w Modular", "PowerSupply", 89.99);
+                Software os = new Software((cidint*9)+8, "Operating System" + cid, "A Windows Operating System", 119.99);
                 List<Part> partlist = new List<Part>();
                 partlist.Add(part1);
                 partlist.Add(part2);
@@ -81,14 +82,14 @@ namespace part3.Controllers
                 comp.setOperatingSystem(os);
 
                 // Get parts list from DB for a computer, then put product ID of those parts
-                Response.Cookies.Append("pickedgpu", ((cidint*8)+1).ToString());
-                Response.Cookies.Append("pickedcpu", ((cidint*8)+2).ToString());
-                Response.Cookies.Append("pickedhdd", ((cidint*8)+3).ToString());
-                Response.Cookies.Append("pickedram", ((cidint*8)+4).ToString());
-                Response.Cookies.Append("pickedmb", ((cidint*8)+5).ToString());
-                Response.Cookies.Append("pickedsc", ((cidint*8)+6).ToString());
-                Response.Cookies.Append("pickedpsu", ((cidint*8)+7).ToString());             
-                Response.Cookies.Append("pickedos", ((cidint*8)+8).ToString());
+                Response.Cookies.Append("pickedgpu", ((cidint*9)+1).ToString());
+                Response.Cookies.Append("pickedcpu", ((cidint*9)+2).ToString());
+                Response.Cookies.Append("pickedhdd", ((cidint*9)+3).ToString());
+                Response.Cookies.Append("pickedram", ((cidint*9)+4).ToString());
+                Response.Cookies.Append("pickedmb", ((cidint*9)+5).ToString());
+                Response.Cookies.Append("pickedsc", ((cidint*9)+6).ToString());
+                Response.Cookies.Append("pickedpsu", ((cidint*9)+7).ToString());             
+                Response.Cookies.Append("pickedos", ((cidint*9)+8).ToString());
 
                 // Hardcode ends here
             }
@@ -115,6 +116,7 @@ namespace part3.Controllers
                 Part ps = new Part(++counter, "Power Supply" + i, "Gold 550w Modular", "PowerSupply", 89.99);
 
                 Software os = new Software(++counter, "Operating System" + i, "A Windows Operating System", 119.99);
+                ++counter;
 
                 oss.Add(os);
                 gpus.Add(gpu);

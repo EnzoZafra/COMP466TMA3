@@ -2,6 +2,18 @@
 @{
     ViewData["Title"] = "PC Express Shop";
 }
+@section Scripts
+{
+    <script src="@Url.Content("~/js/shop.js")"></script>
+}
+<div id="cartmodal" class="pricebox card-panel modal">
+    <div class="modal-content">
+        <h5 class="teal-text">Successfully added to cart!</h5>
+         <br>
+        <h6>To checkout, visit 'Checkout' in the navigation bar</h6>
+    </div>
+</div>
+
 <div class="card-panel">
 <div class="input-field">
     <i class="material-icons prefix">search</i>
@@ -25,7 +37,7 @@
           <div class="card">
             <div class="card-image">
               <img src="images/computer.jpg" >
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+              <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCart(@item.getProductId())"><i class="material-icons">add_shopping_cart</i></a>
             </div>
             <div class="card-content">
               <div class="card-title pink-text row">
@@ -80,7 +92,7 @@
               @if (item.getType() == "PowerSupply") {
                 <img class="mycard-image" src="images/powersupply.jpg">
               }
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+              <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCart(@item.getProductId())"><i class="material-icons">add_shopping_cart</i></a>
             </div>
             <div class="card-content">
               <div class="card-title pink-text row">
@@ -108,7 +120,7 @@
           <div class="card">
             <div class="card-image">
                <img class="mycard-image" src="images/someimg.jpg">
-               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+               <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCart(@item.getProductId())"><i class="material-icons">add_shopping_cart</i></a>
             </div>
             <div class="card-content">
             <div class="card-title pink-text row">
@@ -136,7 +148,7 @@
           <div class="card">
             <div class="card-image">
                <img class="mycard-image" src="images/operatingsystem.jpg">
-               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
+               <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="addCart(@item.getProductId())"><i class="material-icons">add_shopping_cart</i></a>
             </div>
             <div class="card-content">
             <div class="card-title pink-text row">

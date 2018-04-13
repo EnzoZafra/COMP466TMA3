@@ -10,10 +10,16 @@
         Clear Cart
     </button>
   </div>
+  @if(Model.getCart().Count == 0) {
+    <p>Your cart is empty</p>
+  }
   <ul id="cartdetails" class="collection row">
     @foreach (var item in Model.getCart())
     {
        <li class="collection-item avatar">
+          @if (item.getType() == "Computer") {
+            <img class="configimg" src="~/images/computer.jpg">
+          }
           @if (item.getType() == "VideoCard") {
             <img class="configimg" src="~/images/videocard.png">
           }
@@ -42,7 +48,7 @@
           <hr>
           <p>@item.getDescription() <br>
           </p>
-          <h5 class="secondary-content">$@item.getPrice()</h5>
+          <h5 class="secondary-content">$@item.getPrice().ToString("F")</h5>
         </li> 
     }
   </ul>
