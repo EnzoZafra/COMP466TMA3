@@ -18,6 +18,13 @@
 </div>
 
 <div class="card-panel">
+    <div class="row valign-wrapper">
+        <h4 class="teal-text col s9">PC Configurator: </h4>
+        <button class="waves-effect waves-light btn col s3" 
+                onclick="location.href='@Url.Action("ClearSelection", "Configurator")'">
+            Clear Selection
+        </button>
+    </div>
     <form asp-controller="Shop" asp-action="Checkout" method="post">
         <div class="card-panel">
             <div class="row valign-wrapper">

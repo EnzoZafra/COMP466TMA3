@@ -132,5 +132,21 @@ namespace part3.Controllers
                                                 gpus, pss, scs, oss);
             return View(conf);
         }
+
+        [HttpGet]
+        public IActionResult ClearSelection()
+        {
+            Response.Cookies.Delete("pickedps");
+            Response.Cookies.Delete("pickedgpu");
+            Response.Cookies.Delete("pickedcpu");
+            Response.Cookies.Delete("pickedhdd");
+            Response.Cookies.Delete("pickedram");
+            Response.Cookies.Delete("pickedmb");
+            Response.Cookies.Delete("pickedsc");
+            Response.Cookies.Delete("pickedpsu");
+            Response.Cookies.Delete("pickedos");
+
+            return RedirectToAction("Index");
+        }
     }
 }
