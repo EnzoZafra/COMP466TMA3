@@ -1,20 +1,25 @@
 ﻿using System;
-namespace part3.Models
+using System.Collections.Generic;
+
+namespace part4.Models
 {
     public abstract class Product
     {
-        private String Name;
-        private String Description;
-        private String Type;
-        private double Price;
-        private int ProductId;
-        
+        public string Name { get; set;  }
+        public string Description { get; set; }
+        public string Type { get; set;  }
+        public double Price { get; set;  }
+        public int productID { get; set; }
+
+        ICollection<Product> Parts { get; } = new List<Product>();
+        ICollection<Order> Orders { get; } = new List<Order>();
+
         protected Product() {
         }
 
         protected Product(int pid, string name, string desc, string type, double price)
         {
-            ProductId = pid;
+            productID = pid;
             Name = name;
             Description = desc;
             Type = type;
@@ -23,7 +28,7 @@ namespace part3.Models
 
         public int getProductId()
         {
-            return ProductId;
+            return productID;
         }
 
         public String getName()

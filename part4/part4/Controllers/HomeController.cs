@@ -4,15 +4,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using part3.Models;
+using Microsoft.EntityFrameworkCore;
+using part4.Data;
+using part4.Models;
 
-namespace part3.Controllers
+namespace part4.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly StoreContext _context;
+
+        public HomeController(StoreContext context) {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Users.ToListAsync());
         }
 
         public IActionResult Contact()

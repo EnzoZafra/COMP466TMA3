@@ -1,5 +1,5 @@
 ﻿using System;
-namespace part3.Models
+namespace part4.Models
 {
     public class Peripheral : Product
     {

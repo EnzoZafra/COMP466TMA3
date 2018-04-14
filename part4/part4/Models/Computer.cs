@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace part3.Models
+namespace part4.Models
 {
     public class Computer : Product
     {

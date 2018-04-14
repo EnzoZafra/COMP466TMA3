@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace part3.Models
+namespace part4.Models
 {
     public class Checkout
     {
-        private List<Product> Cart;
+        private List<Product> Cart { get; set; }
 
         public Checkout(List<Product> cart)
         {

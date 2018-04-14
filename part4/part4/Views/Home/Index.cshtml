@@ -1,9 +1,14 @@
-﻿@{
+﻿@model IEnumerable<part4.Models.User>
+
+@{
     ViewData["Title"] = "PC Express Home";
 }
 
 <div class="center card-panel">
     <h2>Welcome to PC Express!</h2>
+    @foreach (var item in Model) {
+        <h1>@item.Username</h1>
+    }
     <h5>To shop online, please visit the 'Shop' tab in the navigation bar.</h5>
     <h6>We have a wide selection of prebuilt computers, hardware, software and peripherals.</h6>
     <h6>Buying pre-built computers can save you 10% of the price of buying individual parts<h6>

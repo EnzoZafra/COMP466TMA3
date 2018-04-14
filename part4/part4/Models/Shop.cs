@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
 
-namespace part3.Models
+namespace part4.Models
 {
     public class Shop
     {

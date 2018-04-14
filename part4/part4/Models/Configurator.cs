@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace part3.Models
+namespace part4.Models
 {
     public class Configurator
     {
-        private Computer Computer;
-        private List<Part> Processors;
-        private List<Part> Motherboards;
-        private List<Part> Rams;
-        private List<Part> Harddrives;
-        private List<Part> Videocards;
-        private List<Part> Powersupplies;
-        private List<Part> Soundcards;
-        private List<Software> Operatingsystems;
+        private Computer Computer { get; set; }
+        private List<Part> Processors { get; set; }
+        private List<Part> Motherboards { get; set; }
+        private List<Part> Rams { get; set; }
+        private List<Part> Harddrives { get; set; }
+        private List<Part> Videocards { get; set; }
+        private List<Part> Powersupplies { get; set; }
+        private List<Part> Soundcards { get; set; }
+        private List<Software> Operatingsystems { get; set; }
 
         public Configurator(Computer comp, List<Part> cpus, List<Part> motherboards,
                             List<Part> rams, List<Part> harddrives, List<Part> videocards,

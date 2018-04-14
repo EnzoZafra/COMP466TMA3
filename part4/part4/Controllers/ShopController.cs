@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using part3.Models;
+using part4.Data;
+using part4.Models;
 
-namespace part3.Controllers
+namespace part4.Controllers
 {
     public class ShopController : Controller
     {
+        private readonly StoreContext _context;
+
+        public ShopController(StoreContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             List<Part> hardware = new List<Part>();
