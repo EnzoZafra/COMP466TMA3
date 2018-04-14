@@ -9,7 +9,7 @@ namespace part4.Models
         public string Description { get; set; }
         public string Type { get; set;  }
         public double Price { get; set;  }
-        public int productID { get; set; }
+        public int ProductId { get; set; }
 
         ICollection<Product> Parts { get; } = new List<Product>();
         ICollection<Order> Orders { get; } = new List<Order>();
@@ -19,7 +19,7 @@ namespace part4.Models
 
         protected Product(int pid, string name, string desc, string type, double price)
         {
-            productID = pid;
+            ProductId = pid;
             Name = name;
             Description = desc;
             Type = type;
@@ -28,7 +28,7 @@ namespace part4.Models
 
         public int getProductId()
         {
-            return productID;
+            return ProductId;
         }
 
         public String getName()

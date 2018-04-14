@@ -10,10 +10,10 @@ namespace part4.Data
         {
             context.Database.EnsureCreated();
             // Look for any students.
-            //if (context.Users.Any())
-            //{
-            //    return;   // DB has been seeded
-            //}
+            if (context.Users.Any())
+            {
+                return;   // DB has been seeded
+            }
 
             var users = new User[]
             {

@@ -10,14 +10,17 @@ namespace part4.Data
         {
         }
         public DbSet<User> Users { get; set; }
-        //public DbSet<Product> Products { get; set; }
-        //public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
-            //modelBuilder.Entity<Product>().ToTable("Product");
-            //modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<Part>().HasBaseType<Product>();
+            modelBuilder.Entity<Software>().HasBaseType<Product>();
+            modelBuilder.Entity<Computer>().HasBaseType<Product>();
+
         }
     }
 
