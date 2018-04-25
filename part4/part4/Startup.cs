@@ -23,7 +23,7 @@ namespace part4
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=zafra466.database.windows.net;Database=466part4;User=zafra466admin;Password=Your_password123;";
+            var connection = @"Server=tcp:zafra466.database.windows.net,1433;Initial Catalog=466part4;Persist Security Info=False;User ID=zafra466admin;Password=Your_password123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             services.AddDbContext<StoreContext>(options =>
                                                 options.UseSqlServer(connection));

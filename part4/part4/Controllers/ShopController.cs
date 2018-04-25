@@ -17,10 +17,10 @@ namespace part4.Controllers
 
         public IActionResult Index()
         {
-            List<Part> hardware = new List<Part>();
-            List<Computer> prebuilt = new List<Computer>();
-            List<Software> software = new List<Software>();
-            List<Peripheral> peripherals = new List<Peripheral>();
+            List<Product> hardware = new List<Product>();
+            List<Product> prebuilt = new List<Product>();
+            List<Product> software = new List<Product>();
+            List<Product> peripherals = new List<Product>();
 
             // Hardcoded list of parts, DB for part 4
             int counter = 0;

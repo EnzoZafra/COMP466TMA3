@@ -6,13 +6,13 @@ namespace part4.Models
 {
     public class Shop
     {
-        private List<Computer> PrebuiltConfigurations { get; set; }
-        private List<Part> Hardware { get; set; }
-        private List<Software> Software { get; set; }
-        private List<Peripheral> Peripherals { get; set; }
+        private List<Product> PrebuiltConfigurations { get; set; }
+        private List<Product> Hardware { get; set; }
+        private List<Product> Software { get; set; }
+        private List<Product> Peripherals { get; set; }
 
-        public Shop(List<Computer> prebuilts, List<Part> hardware, 
-                    List<Software> software, List<Peripheral> peripherals)
+        public Shop(List<Product> prebuilts, List<Product> hardware, 
+                    List<Product> software, List<Product> peripherals)
         {
             this.PrebuiltConfigurations = prebuilts;
             this.Hardware = hardware;
@@ -20,22 +20,22 @@ namespace part4.Models
             this.Peripherals = peripherals;
         }
 
-        public List<Computer> getPrebuiltConfigurations()
+        public List<Product> getPrebuiltConfigurations()
         {
             return PrebuiltConfigurations;
         }
 
-        public List<Part> getHardware()
+        public List<Product> getHardware()
         {
             return Hardware;
         }
 
-        public List<Software> getSoftware()
+        public List<Product> getSoftware()
         {
             return Software;
         }
 
-        public List<Peripheral> getPeripherals()
+        public List<Product> getPeripherals()
         {
             return Peripherals;
         }

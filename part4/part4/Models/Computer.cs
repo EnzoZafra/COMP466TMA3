@@ -5,10 +5,12 @@ namespace part4.Models
 {
     public class Computer : Product
     {
-        private List<Part> Parts { get; set; }
-        private Software OperatingSystem { get; set; }
+        public List<Part> Parts { get; set; }
+        public Software OperatingSystem { get; set; }
 
-        public Computer() {
+        public Computer()
+            :base() 
+        {
           this.Parts = new List<Part>();
         }
         
