@@ -4,8 +4,13 @@
 }
 @section Scripts
 {
+    <script>
+        var prices = @part4.Data.JavaScriptConvert.SerializeObject(Model.Pricelist);
+        console.log(prices);
+    </script>
     <script src="@Url.Content("~/js/configurator.js")"></script>
 }
+
 <div class="pricebox card-panel teal-text">
     <h5>Your total:</h5>
     <h4 id="totalprice">$@Model.getComputer().getPrice().ToString()</h4>

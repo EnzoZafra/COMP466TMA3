@@ -10,7 +10,7 @@ namespace part4.Data
         public static void Initialize(StoreContext context)
         {
             context.Database.EnsureCreated();
-            // Look for any students.
+
             if (context.Users.Any())
             {
                 return;   // DB has been seeded
@@ -50,13 +50,13 @@ namespace part4.Data
 
                 double price = 0;
                 foreach(Part p in partslist) {
-                    context.Products.Add(p);
+                    //context.Products.Add(p);
                     price += p.getPrice();
                 }
    
                 price += os.getPrice();
-                Computer comp = new Computer { Name = "Computer " + i, Description = "Prebuilt computer with parts 1", 
-                    Price = price, Type = "Computer" , Parts = partslist, OperatingSystem = os};
+                Computer comp = new Computer { Name = "Computer " + i, Description = "Prebuilt computer with parts " + i, 
+                    Price = price * 0.9, Type = "Computer" , Parts = partslist, OperatingSystem = os};
                 context.Products.Add(comp);
             }
             context.SaveChanges();

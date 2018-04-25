@@ -14,11 +14,12 @@ namespace part4.Models
         private List<Part> Powersupplies { get; set; }
         private List<Part> Soundcards { get; set; }
         private List<Software> Operatingsystems { get; set; }
+        public Dictionary<int, double> Pricelist { get; set; }
 
         public Configurator(Computer comp, List<Part> cpus, List<Part> motherboards,
                             List<Part> rams, List<Part> harddrives, List<Part> videocards,
-                            List<Part> powersupplies, List<Part> soundcards, List<Software> oss
-                           )
+                            List<Part> powersupplies, List<Part> soundcards, List<Software> oss,
+                            Dictionary<int, double> pricelist)
         {
             this.Computer = comp;
             this.Processors = cpus;
@@ -29,6 +30,7 @@ namespace part4.Models
             this.Powersupplies = powersupplies;
             this.Soundcards = soundcards;
             this.Operatingsystems = oss;
+            this.Pricelist = pricelist;
         }
 
         public Computer getComputer() {

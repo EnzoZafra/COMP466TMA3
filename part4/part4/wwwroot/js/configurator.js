@@ -1,5 +1,4 @@
-﻿prices = {}
-selectedPrice = {}
+﻿selectedPrice = {}
 selectedItem = {}
 
 function buynow() {
@@ -94,20 +93,14 @@ function updateTotal() {
 }
 
 function storePrices() {
-    //TODO: hardcoded db in part 4
-    var counter = 0;
-    for (var i = 0; i < 5; i++) 
-    {
-        prices[++counter] = 499.99
-        prices[++counter] = 374.99
-        prices[++counter] = 89.99
-        prices[++counter] = 224.99
-        prices[++counter] = 129.99
-        prices[++counter] = 49.99
-        prices[++counter] = 89.99
-        prices[++counter] = 119.99
-        ++counter
-    }
+    //$.getJSON("/black-pearl/crew", function(crewResponse) {
+    //    pirates = crewResponse.pirates;
+    //});
+}
+
+function oldstorePrices() {
+// TODO: need to query MYSQL in javascript.. 
+// Try calling a PHP file
 }
 
 function initStore() {

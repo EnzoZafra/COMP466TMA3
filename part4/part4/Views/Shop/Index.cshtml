@@ -49,12 +49,12 @@
                 </div>
               </div>
               <p>@item.getDescription()</p>
-                  <form asp-controller="Configurator" asp-action="Index" method="post">
+<!--                  <form asp-controller="Configurator" asp-action="Index" method="post">
                       <input type="hidden" name="cid" value="@item.getProductId()" >
                       <button class="btn waves-effect waves-light" type="submit">Configure
                          <i class="material-icons right">settings</i>
                       </button>
-                  </form>
+                  </form>-->
             </div>
           </div>
         </div>
@@ -103,9 +103,7 @@
                     <h6>$@item.getPrice().ToString("0.00")</h6>
                 </div>
               </div>
-                <div class="col s4">
-                    <p>@item.getType()</p>
-                </div>
+                <p>@item.getDescription()</p>
             </div>
           </div>
         </div>

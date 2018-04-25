@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace part4.Models
 {
     public class Part : Product
     {
+        ICollection<Computer> computer { get; set; } = new List<Computer>();
+
         public Part()
          : base()
         {

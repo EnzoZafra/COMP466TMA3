@@ -17,7 +17,7 @@ namespace part4.Data
         {
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Order>().ToTable("Order");
-            //modelBuilder.Entity<Product>().ToTable("Products");
+            modelBuilder.Entity<Product>().ToTable("Products");
             modelBuilder.Entity<Part>().HasBaseType<Product>();
             modelBuilder.Entity<Software>().HasBaseType<Product>();
             modelBuilder.Entity<Computer>().HasBaseType<Product>();

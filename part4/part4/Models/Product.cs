@@ -11,7 +11,6 @@ namespace part4.Models
         public double Price { get; set;  }
         public int ProductId { get; set; }
 
-        ICollection<Product> Parts { get; } = new List<Product>();
         ICollection<Order> Orders { get; } = new List<Order>();
 
         protected Product() {

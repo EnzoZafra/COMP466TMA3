@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
+using Microsoft.EntityFrameworkCore;
 using part4.Data;
 using part4.Models;
 
@@ -21,45 +22,57 @@ namespace part4.Controllers
     
         public IActionResult Index()
         {
-          Computer comp = new Computer();
-          List<Part> partlist = new List<Part>();
+            var products = from p in _context.Products
+                       select p;
+            var parts = products.OfType<Part>();
+            var softwares = products.OfType<Software>();
 
-          List<Part> gpus = new List<Part>();
-          List<Part> cpus = new List<Part>();
-          List<Software> oss = new List<Software>();
-          List<Part> rams = new List<Part>();
-          List<Part> hdds = new List<Part>();
-          List<Part> mbs = new List<Part>();
-          List<Part> scs = new List<Part>();
-          List<Part> pss = new List<Part>();
+            Computer comp = new Computer();
+            Dictionary<int, double> pricelist = new Dictionary<int, double>();
 
-          int counter = 0;
-          for (int i = 0; i < 5; i++)
-          {
-            Part gpu = new Part(++counter, "VideoCard " + i, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
-            Part cpu = new Part(++counter, "Processor " + i, "6-Core 3.2 GHz", "Processor", 374.99);
-            Part hdd = new Part(++counter, "Harddrive " + i, "2 Terabyte Drive", "Harddrive", 89.99);
-            Part ram = new Part(++counter, "RAM " + i, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
-            Part mb = new Part(++counter, "Motherboard " + i, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
-            Part sc = new Part(++counter, "Sound Card" + i, "7.1 Surround Sound", "SoundCard", 49.99);
-            Part ps = new Part(++counter, "Power Supply" + i, "Gold 550w Modular", "PowerSupply", 89.99);
+            List<Part> gpus = parts.Where(p => p.Type.Equals("VideoCard")).ToList();
+            List<Part> cpus = parts.Where(p => p.Type.Equals("Processor")).ToList();
+            List<Software> oss = softwares.ToList();
+            List<Part> rams = parts.Where(p => p.Type.Equals("RAM")).ToList();
+            List<Part> hdds = parts.Where(p => p.Type.Equals("Harddrive")).ToList();
+            List<Part> mbs = parts.Where(p => p.Type.Equals("Motherboard")).ToList();
+            List<Part> scs = parts.Where(p => p.Type.Equals("SoundCard")).ToList();
+            List<Part> pss = parts.Where(p => p.Type.Equals("PowerSupply")).ToList();
 
-            Software os = new Software(++counter, "Operating System" + i, "A Windows Operating System", 119.99);
-            ++counter;
+            foreach(var i in gpus) {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in cpus)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in oss)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in rams)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in hdds)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in mbs)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in scs)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in pss)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
 
-            oss.Add(os);
-            gpus.Add(gpu);
-            cpus.Add(cpu);
-            hdds.Add(hdd);
-            rams.Add(ram);
-            mbs.Add(mb);
-            scs.Add(sc);
-            pss.Add(ps);
-          }
-
-
-          Configurator conf = new Configurator(comp, cpus, mbs, rams, hdds,
-                                              gpus, pss, scs, oss);
+            Configurator conf = new Configurator(comp, cpus, mbs, rams, hdds,
+                                                 gpus, pss, scs, oss, pricelist);
           return View(conf);
         }
 
@@ -67,79 +80,98 @@ namespace part4.Controllers
         public IActionResult Index(string cid)
         {
             Computer comp = new Computer();
+            var products = from p in _context.Products
+                           select p;
+            var parts = products.OfType<Part>();
+            var softwares = products.OfType<Software>();
+            
             if(!string.IsNullOrEmpty(cid)) {
                 int cidint = int.Parse(cid);
-                 // This should be a database search in part 4 instead of hard code. 
-                Part part1 = new Part(cidint - 8, "VideoCard " + cid, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
-                Part part2 = new Part(cidint - 7, "Processor " + cid, "6-Core 3.2 GHz", "Processor", 374.99);
-                Part part3 = new Part(cidint - 6, "Harddrive " + cid, "2 Terabyte Drive", "Harddrive", 89.99);
-                Part part4 = new Part(cidint - 5, "RAM " + cid, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
-                Part part5 = new Part(cidint - 4, "Motherboard " + cid, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
-                Part part6 = new Part(cidint - 3, "Sound Card" + cid, "7.1 Surround Sound", "SoundCard", 49.99);
-                Part part7 = new Part(cidint - 2, "Power Supply" + cid, "Gold 550w Modular", "PowerSupply", 89.99);
-                Software os = new Software(cidint - 1, "Operating System" + cid, "A Windows Operating System", 119.99);
-
-                List<Part> partlist = new List<Part>();
-                partlist.Add(part1);
-                partlist.Add(part2);
-                partlist.Add(part3);
-                partlist.Add(part4);
-                partlist.Add(part5);
-                partlist.Add(part6);
-                partlist.Add(part7);
-                comp.setParts(partlist);
-                comp.setOperatingSystem(os);
+                var test = products.OfType<Computer>().Where(p => p.ProductId.Equals(cidint)).First();
+                comp = products.OfType<Computer>().Where(p => p.ProductId.Equals(cidint)).First();
+                //var compparts = products.OfType<Part>().Where(p => p.ComputerProductId.Equals(comp.ProductId));
+                //comp.Parts = compparts.ToList();
+                //comp.OperatingSystem = products.OfType<Software>().Where(p => p.ComputerProductId.Equals(comp.ProductId)).First();
 
                 // Get parts list from DB for a computer, then put product ID of those parts
-                Response.Cookies.Append("pickedgpu", (cidint - 8).ToString());
-                Response.Cookies.Append("pickedcpu", (cidint - 7).ToString());
-                Response.Cookies.Append("pickedhdd", (cidint - 6).ToString());
-                Response.Cookies.Append("pickedram", (cidint - 5).ToString());
-                Response.Cookies.Append("pickedmb", (cidint - 4).ToString());
-                Response.Cookies.Append("pickedsc", (cidint - 3).ToString());
-                Response.Cookies.Append("pickedpsu", (cidint - 2).ToString());
-                Response.Cookies.Append("pickedos", (cidint - 1).ToString());
-                // Hardcode ends here
+                foreach (var part in comp.Parts) {
+                    if (part.Type == "VideoCard") {
+                        Response.Cookies.Append("pickedgpu", part.getProductId().ToString());
+                    }
+                    else if (part.Type == "Processor")
+                    {
+                        Response.Cookies.Append("pickedcpu", part.getProductId().ToString());
+                    }
+                    else if (part.Type == "Harddrive")
+                    {
+                        Response.Cookies.Append("pickedhdd", part.getProductId().ToString());
+                    }
+                    else if (part.Type == "RAM")
+                    {
+                        Response.Cookies.Append("pickedram", part.getProductId().ToString());
+                    }
+                    else if (part.Type == "Motherboard")
+                    {
+                        Response.Cookies.Append("pickedmb", part.getProductId().ToString());
+                    }
+                    else if (part.Type == "SoundCard")
+                    {
+                        Response.Cookies.Append("pickedsc", part.getProductId().ToString());
+                    }
+                    else if (part.Type == "PowerSupply")
+                    {
+                        Response.Cookies.Append("pickedpsu", part.getProductId().ToString());
+                    }
+                }
+                Response.Cookies.Append("pickedos", comp.OperatingSystem.getProductId().ToString());
             }
 
-            List<Part> gpus = new List<Part>();
-            List<Part> cpus = new List<Part>();
-            List<Software> oss = new List<Software>();
-            List<Part> rams = new List<Part>();
-            List<Part> hdds = new List<Part>();
-            List<Part> mbs = new List<Part>();
-            List<Part> scs = new List<Part>();
-            List<Part> pss = new List<Part>();
+            Dictionary<int, double> pricelist = new Dictionary<int, double>();
 
-            // Hardcoded list of available parts, DB for part 4
-            int counter = 0;
-            for (int i = 0; i < 5; i++)
+            List<Part> gpus = parts.Where(p => p.Type.Equals("VideoCard")).ToList();
+            List<Part> cpus = parts.Where(p => p.Type.Equals("Processor")).ToList();
+            List<Software> oss = softwares.ToList();
+            List<Part> rams = parts.Where(p => p.Type.Equals("RAM")).ToList();
+            List<Part> hdds = parts.Where(p => p.Type.Equals("Harddrive")).ToList();
+            List<Part> mbs = parts.Where(p => p.Type.Equals("Motherboard")).ToList();
+            List<Part> scs = parts.Where(p => p.Type.Equals("SoundCard")).ToList();
+            List<Part> pss = parts.Where(p => p.Type.Equals("PowerSupply")).ToList();
+
+            foreach (var i in gpus)
             {
-                Part gpu = new Part(++counter, "VideoCard " + i, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
-                Part cpu = new Part(++counter, "Processor " + i, "6-Core 3.2 GHz", "Processor", 374.99);
-                Part hdd = new Part(++counter, "Harddrive " + i, "2 Terabyte Drive", "Harddrive", 89.99);
-                Part ram = new Part(++counter, "RAM " + i, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
-                Part mb = new Part(++counter, "Motherboard " + i, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
-                Part sc = new Part(++counter, "Sound Card" + i, "7.1 Surround Sound", "SoundCard", 49.99);
-                Part ps = new Part(++counter, "Power Supply" + i, "Gold 550w Modular", "PowerSupply", 89.99);
-
-                Software os = new Software(++counter, "Operating System" + i, "A Windows Operating System", 119.99);
-                ++counter;
-
-                oss.Add(os);
-                gpus.Add(gpu);
-                cpus.Add(cpu);
-                hdds.Add(hdd);
-                rams.Add(ram);
-                mbs.Add(mb);
-                scs.Add(sc);
-                pss.Add(ps);
+                pricelist[i.ProductId] = i.Price;
             }
-            // Hardcode ends here
-
+            foreach (var i in cpus)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in oss)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in rams)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in hdds)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in mbs)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in scs)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
+            foreach (var i in pss)
+            {
+                pricelist[i.ProductId] = i.Price;
+            }
 
             Configurator conf = new Configurator(comp, cpus, mbs, rams, hdds,
-                                                gpus, pss, scs, oss);
+                                                 gpus, pss, scs, oss, pricelist);
             return View(conf);
         }
 

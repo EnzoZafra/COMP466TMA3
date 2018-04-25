@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using part4.Data;
 using part4.Models;
+using System.Linq;
 
 namespace part4.Controllers
 {
@@ -17,61 +18,21 @@ namespace part4.Controllers
 
         public IActionResult Index()
         {
-            List<Product> hardware = new List<Product>();
-            List<Product> prebuilt = new List<Product>();
-            List<Product> software = new List<Product>();
+            var products = from p in _context.Products
+                                   select p;
+            
+            var hardware = products.Where(p => p.Type.Contains("VideoCard")
+                                          || p.Type.Contains("Processor")
+                                          || p.Type.Contains("Harddrive")
+                                          || p.Type.Contains("RAM")
+                                          || p.Type.Contains("Motherboard")
+                                          || p.Type.Contains("SoundCard")
+                                          || p.Type.Contains("PowerSupply"));
+            var prebuilt = products.Where(p => p.Type.Contains("Computer"));
+            var software = products.Where(p => p.Type.Contains("Software"));
             List<Product> peripherals = new List<Product>();
 
-            // Hardcoded list of parts, DB for part 4
-            int counter = 0;
-            for (int i = 0; i < 5; i++) {
-                List<Part> partlist = new List<Part>();
-                Part part1 = new Part(++counter, "VideoCard " + i, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
-                Part part2 = new Part(++counter, "Processor " + i, "6-Core 3.2 GHz", "Processor", 374.99);
-                Part part3 = new Part(++counter, "Harddrive " + i, "2 Terabyte Drive", "Harddrive", 89.99);
-                Part part4 = new Part(++counter, "RAM " + i, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
-                Part part5 = new Part(++counter, "Motherboard " + i, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
-                Part part6 = new Part(++counter, "Sound Card" + i, "7.1 Surround Sound", "SoundCard", 49.99);
-                Part part7 = new Part(++counter, "Power Supply" + i, "Gold 550w Modular", "PowerSupply", 89.99);
-
-                Software os = new Software(++counter, "Operating System" + i, "A Windows Operating System", 119.99);
-                software.Add(os);
-
-                partlist.Add(part1);
-                partlist.Add(part2);
-                partlist.Add(part3);
-                partlist.Add(part4);
-                partlist.Add(part5);
-                partlist.Add(part6);
-                partlist.Add(part7);
-
-                String desc = "This computer has a " + part1.getName() + ", " + part2.getName() + ", "
-                                + part3.getName() + ", " + part4.getName() + ", " + part5.getName() + ", "
-                                + part6.getName() + ", " + part7.getName() + ", " + os.getName();
-
-                double price = 0;
-                
-                foreach (var item in partlist) {
-                  price += item.getPrice();
-                }
-                price += os.getPrice();
-                
-                // Hardcoded list of comps
-                Computer comp = new Computer(++counter, "Computer " + i, partlist, os, desc, price*0.9);
-
-                prebuilt.Add(comp);
-                hardware.Add(part1);
-                hardware.Add(part2);
-                hardware.Add(part3);
-                hardware.Add(part4);
-                hardware.Add(part5);
-                hardware.Add(part6);
-                hardware.Add(part7);
-
-            }
-            // end of hardcoded list
-
-            Shop shop = new Shop(prebuilt, hardware, software, peripherals);
+            Shop shop = new Shop(prebuilt.ToList(), hardware.ToList(), software.ToList(), peripherals);
 
             return View(shop);
         }
@@ -86,8 +47,7 @@ namespace part4.Controllers
             String cart = Request.Cookies["cart"];
             if (!string.IsNullOrEmpty(cart)) {
                 String[] parts = cart.Split('/');
-                List<string> productids = new List<string>();
-                Console.WriteLine("TEST");
+                List<int> productids = new List<int>();
                 foreach (var part in parts)
                 {
                     if (!string.IsNullOrEmpty(part))
@@ -95,66 +55,28 @@ namespace part4.Controllers
                         // If selected none, ignore
                         if (part != "-1")
                         {
-                            productids.Add(part);
+                            productids.Add(int.Parse(part));
                         }
                     }
                 }
                 // Make db call for part 4 (Select * from products where id in [product id array] instead of below
+                var products = from p in _context.Products
+                               select p;
+                var selectedproducts = products.Where(p => productids.Contains(p.ProductId));
+                List<Computer> comptobuy = selectedproducts.OfType<Computer>().ToList();
+                List<Part> parttobuy = selectedproducts.OfType<Part>().ToList();
+                List<Software> softwaretobuy = selectedproducts.OfType<Software>().ToList();
 
-                // TODO: remove this for part 4
-                Dictionary<int, Product> temp = new Dictionary<int, Product>();
-                int counter = 0;
-                for (int i = 0; i < 5; i++) {
-                    Part part1 = new Part(++counter, "VideoCard " + i, "Dual HDMI, DUAL DP", "VideoCard", 499.99);
-                    temp.Add(counter, part1);
-                    Part part2 = new Part(++counter, "Processor " + i, "6-Core 3.2 GHz", "Processor", 374.99);
-                    temp.Add(counter, part2);
-                    Part part3 = new Part(++counter, "Harddrive " + i, "2 Terabyte Drive", "Harddrive", 89.99);
-                    temp.Add(counter, part3);
-                    Part part4 = new Part(++counter, "RAM " + i, "16GB RAM, 2x8GB DDR4", "RAM", 224.99);
-                    temp.Add(counter, part4);
-                    Part part5 = new Part(++counter, "Motherboard " + i, "4 DDR4 slots, Intel Slot, 2 PCIe Slots", "Motherboard", 129.99);
-                    temp.Add(counter, part5);
-                    Part part6 = new Part(++counter, "Sound Card" + i, "7.1 Surround Sound", "SoundCard", 49.99);
-                    temp.Add(counter, part6);
-                    Part part7 = new Part(++counter, "Power Supply" + i, "Gold 550w Modular", "PowerSupply", 89.99);
-                    temp.Add(counter, part7);
-
-                    Software os = new Software(++counter, "Operating System" + i, "A Windows Operating System", 119.99);
-                    temp.Add(counter, os);
-
-
-                    List<Part> partlist = new List<Part>();
-                    partlist.Add(part1);
-                    partlist.Add(part2);
-                    partlist.Add(part3);
-                    partlist.Add(part4);
-                    partlist.Add(part5);
-                    partlist.Add(part6);
-                    partlist.Add(part7);
-
-                    String desc = "This computer has a " + part1.getName() + ", " + part2.getName() + ", "
-                                    + part3.getName() + ", " + part4.getName() + ", " + part5.getName() + ", "
-                                    + part6.getName() + ", " + part7.getName() + ", " + os.getName();
-
-                    double price = 0;
-
-                    foreach (var item in partlist)
-                    {
-                        price += item.getPrice();
-                    }
-                    price += os.getPrice();
-
-                    // Hardcoded list of comps
-                    Computer comp = new Computer(++counter, "Computer " + i, partlist, os, desc, price * 0.9);
-                    temp.Add(counter, comp);
+                foreach(var comp in comptobuy) {
+                    productstobuy.Add(comp);
                 }
-                // end of hardcoded list
-                foreach(string pid in productids) {
-                    Product p = temp[int.Parse(pid)];
-                    if (p != null) {
-                        productstobuy.Add(p);
-                    }
+                foreach (var part in parttobuy)
+                {
+                    productstobuy.Add(part);
+                }
+                foreach (var sw in softwaretobuy)
+                {
+                    productstobuy.Add(sw);
                 }
             }
 
