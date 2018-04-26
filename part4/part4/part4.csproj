@@ -59,6 +59,7 @@
     <Folder Include="Views\Shop\" />
     <Folder Include="Views\Configurator\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="wwwroot\js\script.js" />

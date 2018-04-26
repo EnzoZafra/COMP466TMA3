@@ -1,0 +1,40 @@
+﻿@model part4.Models.User
+@{
+    ViewBag.Title = "Register";
+}
+@using (Html.BeginForm())
+{
+    @HtmlAntiForgeryToken()
+    <div class="col s3 card-panel">
+        <div class="row">
+            <div class="input-field col s12 center">
+                <h5 class="center teal-text">Register</h5>
+            </div>
+        </div>
+        @Html.ValidationSummary(true, "", new {@class="text-danger"})
+        <div class="row">
+            <div class="input-field col s12 center">
+                <i class="material-icons prefix">perm_identity</i>
+                <input name="username" type="text">
+                <label for="username" class="center-align">Username</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 center">
+                <i class="material-icons prefix">lock_outline</i>
+                <input name="password" type="password">
+                <label for="password">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <button type="submit" class="btn waves-effect waves-light col s12">Login</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6 m6 l6">
+                <p class="margin medium-small"><a href="registerpage.php">Register Now!</a></p>
+            </div>
+        </div>
+</div>
+}
