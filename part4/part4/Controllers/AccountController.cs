@@ -34,9 +34,14 @@ namespace part4.Controllers
             if (ModelState.IsValid) {
                 _context.Users.Add(user);
                 _context.SaveChanges();
+                ModelState.Clear();
+                ViewBag.Message = user.Username + " successfully registered";
             }
-            ModelState.Clear();
-            ViewBag.Message = user.Username + " successfully registered";
+            else {
+                ViewBag.Message = "Registration failed. Please check that you have " +
+                    "all fields filled and you have successfully confirmed your password";
+                user.ConfirmPassword = "";
+            }
             return View();
         }
 

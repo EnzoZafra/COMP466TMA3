@@ -18,7 +18,8 @@ namespace part4.Data
 
             var users = new User[]
             {
-                new User{Username="enzo", Password="zafra", Question="Whats your fathers maiden name", Answer="santos"}
+                new User{Username="enzo", Password="zafra", Question="Whats your fathers maiden name", Answer="santos",
+                    }
             };
 
             foreach (User u in users)
