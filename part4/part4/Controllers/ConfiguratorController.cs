@@ -73,6 +73,7 @@ namespace part4.Controllers
 
             Configurator conf = new Configurator(comp, cpus, mbs, rams, hdds,
                                                  gpus, pss, scs, oss, pricelist);
+         setLogin();
           return View(conf);
         }
 
@@ -172,6 +173,7 @@ namespace part4.Controllers
 
             Configurator conf = new Configurator(comp, cpus, mbs, rams, hdds,
                                                  gpus, pss, scs, oss, pricelist);
+            setLogin();
             return View(conf);
         }
 
@@ -189,6 +191,11 @@ namespace part4.Controllers
             Response.Cookies.Delete("pickedos");
 
             return RedirectToAction("Index");
+        }
+
+        public void setLogin()
+        {
+            ViewBag.LoggedIn = Request.Cookies["UserID"];
         }
     }
 }

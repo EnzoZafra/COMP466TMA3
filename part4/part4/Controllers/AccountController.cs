@@ -68,6 +68,13 @@ namespace part4.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("UserID");
+            Response.Cookies.Delete("Username");
+            return RedirectToAction("LoggedIn");
+        }
+
         public IActionResult LoggedIn() {
             if (Request.Cookies["UserID"] != null) {
                 return RedirectToAction("Index", "Home");

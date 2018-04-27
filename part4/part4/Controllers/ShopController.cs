@@ -33,7 +33,7 @@ namespace part4.Controllers
             List<Product> peripherals = new List<Product>();
 
             Shop shop = new Shop(prebuilt.ToList(), hardware.ToList(), software.ToList(), peripherals);
-
+            setLogin();
             return View(shop);
         }
 
@@ -81,6 +81,7 @@ namespace part4.Controllers
             }
 
             Checkout checkout = new Checkout(productstobuy);
+            setLogin();
             return View(checkout);
         }
 
@@ -89,6 +90,11 @@ namespace part4.Controllers
         {
             Response.Cookies.Delete("cart");
             return RedirectToAction("Checkout");
+        }
+
+        public void setLogin()
+        {
+            ViewBag.LoggedIn = Request.Cookies["UserID"];
         }
     }
 }
