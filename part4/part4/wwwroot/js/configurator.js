@@ -8,7 +8,6 @@ function buynow() {
             cart += selectedItem[key] + '/'
         }
     }
-    console.log(cart)
     var cookie = readCookie("cart")
     if (cookie != null) {
         cookie = "cart=" + cookie + cart
@@ -92,19 +91,7 @@ function updateTotal() {
     document.getElementById("totalprice").innerHTML = "$" + total.toFixed(2);
 }
 
-function storePrices() {
-    //$.getJSON("/black-pearl/crew", function(crewResponse) {
-    //    pirates = crewResponse.pirates;
-    //});
-}
-
-function oldstorePrices() {
-// TODO: need to query MYSQL in javascript.. 
-// Try calling a PHP file
-}
-
 function initStore() {
-    storePrices()
     setSelectedItem()
     $('#processor').trigger("change");
     $('#motherboard').trigger("change");

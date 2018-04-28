@@ -69,19 +69,20 @@ namespace part4.Controllers
         public IActionResult Login(User user) {
             if (_context.Users.Any())
             {
-                var usr = _context.Users.Single(u => u.Username == user.Username
-                                            && u.Password == user.Password);
-                if (usr != null)
+                var query = _context.Users.Where(u => u.Username == user.Username
+                && u.Password == user.Password);
+                if (!query.Any())
                 {
+                    ModelState.AddModelError("", "Username or password is incorrect");
+                    return View();
+                }
+                else {
+                    var usr = query.Single();
                     Response.Cookies.Delete("UserID");
                     Response.Cookies.Delete("Username");
                     Response.Cookies.Append("UserID", usr.UserId.ToString());
                     Response.Cookies.Append("Username", user.Username);
                     return RedirectToAction("LoggedIn");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Username or password is incorrect");
                 }
             }
             return View();

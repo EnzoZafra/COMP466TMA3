@@ -8,7 +8,7 @@
         @foreach (var order in Model.Orders)
         {
             <li>
-                <div class="collapsible-header">@order.OrderId</div>
+                <div class="collapsible-header">Order Number: @order.OrderId</div>
                 <div class="collapsible-body">
                        <ul id="cartdetails" class="collection row">
                             @foreach (var item in order.Products)

@@ -13,8 +13,8 @@
       <h4>Assignment 3</h4>
       <h5>Lorenzo Zafra - 3356915</h5>
       <h6><b>Date began:</b> April 3, 2018</h6>
-      <h6><b>Date completed:</b> April x, 2018</h6>
-      <h6><b>Estimated hours spent:</b> x hours</h6>
+      <h6><b>Date completed:</b> April 28, 2018</h6>
+      <h6><b>Estimated hours spent:</b> 48 hours</h6>
     </div>
 
     <hr>
@@ -23,13 +23,14 @@
         <ul class="tabs">
           <li class="tab col s3"><a class="teal-text" href="#part1">Part 1</a></li>
           <li class="tab col s3"><a class="teal-text" href="#part2">Part 2</a></li>
+          <li class="tab col s3"><a class="teal-text" href="#part3">Part 3</a></li>
+          <li class="tab col s3"><a class="teal-text" href="#part4">Part 4</a></li>
         </ul>
       </div>
       <div id="part1" class="col s12 container">
         <h4>Part 1 - Cookie Tracker</h4>
 
         <h5 class="teal-text">Links</h5>
-        <p>Local: <a href="#"><b>click here for part 1</b></a></p>
         <p>Live Server: <a href="#"><b>click here for part 1</b></a></p>
 
         <p>If the live server link does not work, the host may have gone down. Please contact me at
@@ -116,7 +117,6 @@
       <div id="part2" class="col s12 container">
         <h4>Part 2 - ASP.NET Slideshow</h4>
         <h5 class="teal-text">Links</h5>
-        <p>Local: <a href="#"><b>click here for part 2</b></a></p>
         <p>Live Server: <a href="#"><b>click here for part 2</b></a></p>
         <p>If the live server link does not work, the host may have gone down. Please contact me at
           <a href="mailto:zafra@ualberta.ca">zafra@ualberta.ca</a></p>
@@ -248,6 +248,113 @@
           for reference.
         </p>
       </div>
+
+      <div id="part3" class="col s12 container">
+        <h4>Part 3 - Online Computer Store Part 1</h4>
+        <h5 class="teal-text">Links</h5>
+        <p>Live Server: <a href="#"><b>click here for part3</b></a></p>
+        <p>If the live server link does not work, the host may have gone down. Please contact me at
+          <a href="mailto:zafra@ualberta.ca">zafra@ualberta.ca</a></p>
+
+        <h5 class="teal-text">Description</h5>
+        <p>
+          <ol>
+          </ol>
+        </p>
+
+        <h5 class="teal-text">My interpretation</h5>
+        <p>
+        </p>
+
+        <h5 class="teal-text">Analysis and Design of the Web Application</h5>
+        <p>
+          The project was created using the Model-View-Controller design pattern. The <b>Model</b> represents the
+          data that is to be displayed to the user. The <b>View</b> is the entity responsible for displaying the data
+          to the user. The <b>Controller</b> is responsible for changing the model data.
+          <br><br>
+
+        </p>
+
+        <h5 class="teal-text">Documentation</h5>
+        <br>
+
+        <h6><b>Models</b></h6>
+        <p>myImage.cs</p>
+        <ul class="browser-default">
+          <li>An object which holds the URL and Caption of the image</li>
+          <ul class="browser-default">
+            <li>Url: String</li>
+            <li>Caption: String</li>
+          </ul>
+        </ul>
+        <p>Slideshow.cs</p>
+        <ul class="browser-default">
+          <li>Contains a list of myImages. Used by the View to store the images</li>
+          <ul class="browser-default">
+            <li>MyImages: ArrayList<myImage></li>
+          </ul>
+          <li>Parses the text file containing the information about the Images and creates a list of myImages</li>
+        </ul>
+        <h6><b>Views</b></h6>
+        <p>Index.cshtml</p>
+        <ul class="browser-default">
+          <li>A cshtml file which is responsible for displaying the Model's data</li>
+          <li>Very similar to an html file except cshtml has the ability to get the Model's data directly</li>
+          <li>Uses a Bootstrap CSS Carousel Element for the slideshow</li>
+          <li>Contains buttons on the pictures for forward and backward</li>
+          <li>Play button and a switch is created with Materialize CSS</li>
+        </ul>
+        <h6><b>Controllers</b></h6>
+        <p>HomeController.cs</p>
+        <ul class="browser-default">
+          <li>Responsible for responding to the GET request that is created when the user loads the page</li>
+          <li>Loads the text file that contains the image information</li>
+          <li>Create a Slideshow object with said information</li>
+          <li>Return the Index view to show the slideshow</li>
+        </ul>
+        <h6><b>Javascript</b></h6>
+        <p>script.js</p>
+        <ul class="browser-default">
+          <li>Contains JavaScript listeners for the Play button and the Switch</li>
+          <li>pauseplayListener()</li>
+          <ul class="browser-default">
+            <li>Toggles the 'paused' flag, pauses the carousel if paused is true</li>
+          </ul>
+          <li>switchListener()</li>
+          <ul class="browser-default">
+            <li>If Checked, then random is selected. Disable the forward and backward buttons then call random()</li>
+            <li>If not Checked, enable the forward and backward button then call sequential()</li>
+          </ul>
+          <li>random()</li>
+          <ul class="browser-default">
+            <li>Pause the carousel then calculate the index for a random image</li>
+            <li>Show the said random index on the carousel, set an interval to do it again until stopped</li>
+            <li>Interval should have a flag to tell if random has been deselected. If so, clear the interval.</li>
+          </ul>
+          <li>sequential()</li>
+          <ul class="browser-default">
+            <li>enable the 'cycle' function of the carousel</li>
+            <li>Set 'randflag' to true so that the random interval is cleared.</li>
+          </ul>
+        </ul>
+
+        <h5 class="teal-text">Set up and running</h5>
+        <p>
+          To access the login screen, open 'welcome.php' path on your browser. For example, assuming you have already
+          moved the 'TMA2' directory to the 'htdocs' folder, go to the URL: 'localhost/TMA2/part2/welcome.php'.
+          Or <a href="part2/welcome.php"><b>click here to access part 1</b></a><br>
+
+          <p>You may also access the live server linked <a href="http://zafracomp466.x10host.com/TMA2/part2/welcome.php"><b>here</b></a></p>
+        </p>
+
+        <h5 class="teal-text">Extra Information</h5>
+        <p>
+          Materialize CSS was used for this assignment. Also Bootstrap CSS was used. Bootstrap CSS is included
+          in the ASP.NET MVC solution offered in Visual Studio. The base project contains a carousel that I used
+          for reference.
+        </p>
+      </div>
+
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="shared/js/materialize.js"></script>

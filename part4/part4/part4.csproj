@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+    <Compile Remove="wwwroot\lib\jquery-validation\**" />
+    <Compile Remove="wwwroot\lib\jquery\**" />
+    <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+    <Content Remove="wwwroot\lib\jquery-validation\**" />
+    <Content Remove="wwwroot\lib\jquery\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery-validation\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery\**" />
+    <None Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+    <None Remove="wwwroot\lib\jquery-validation\**" />
+    <None Remove="wwwroot\lib\jquery\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
@@ -32,27 +47,12 @@
     <Content Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
     <Content Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
     <Content Remove="wwwroot\lib\bootstrap\dist\js\npm.js" />
-    <Content Remove="wwwroot\lib\jquery\.bower.json" />
-    <Content Remove="wwwroot\lib\jquery\LICENSE.txt" />
-    <Content Remove="wwwroot\lib\jquery\dist\jquery.js" />
-    <Content Remove="wwwroot\lib\jquery\dist\jquery.min.js" />
-    <Content Remove="wwwroot\lib\jquery\dist\jquery.min.map" />
-    <Content Remove="wwwroot\lib\jquery-validation\.bower.json" />
-    <Content Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
-    <Content Remove="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
-    <Content Remove="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
-    <Content Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
-    <Content Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
-    <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\.bower.json" />
-    <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
-    <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <Content Remove="wwwroot\images\banner1.svg" />
     <Content Remove="wwwroot\images\banner2.svg" />
     <Content Remove="wwwroot\images\banner3.svg" />
     <Content Remove="wwwroot\images\banner4.svg" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="wwwroot\css\site.min.css" />
-    <Content Remove="wwwroot\js\configurator.js" />
     <Content Remove="wwwroot\gopher.mp3" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
     $('.tabs').tabs();
     $('select').material_select();
-    $('.dropdown-trigger').dropdown();
 });
 
 function readCookie(name) {
