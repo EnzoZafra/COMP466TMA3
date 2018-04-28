@@ -1,9 +1,0 @@
-Seems like title page always has a banner for ADs
-There should be recommended products for selected products, but not enough
-products in the database to implement it
-
-Banner for deals
-
-each product page should have reviews
-Usually, computer websites have a configuration page
-Navigation bars so it's easy to go back to certain pages

@@ -14,7 +14,7 @@
       <h5>Lorenzo Zafra - 3356915</h5>
       <h6><b>Date began:</b> April 3, 2018</h6>
       <h6><b>Date completed:</b> April 28, 2018</h6>
-      <h6><b>Estimated hours spent:</b> 48 hours</h6>
+      <h6><b>Estimated hours spent:</b> 42 hours</h6>
     </div>
 
     <hr>
@@ -107,10 +107,10 @@
 
         <h5 class="teal-text">Set up and running</h5>
         <p>
-          To access welcome php, open 'welcome.php' path on your browser. For example, assuming you have already
-          moved the 'TMA2' directory to the 'htdocs' folder, go to the URL: 'localhost/TMA2/part1/welcome.php'.
-          Or <a href="part1/welcome.php"><b>click here to access part 1</b></a><br>
-          <p>You may also access the live server linked <a href="http://zafracomp466.x10host.com/TMA2/part1/welcome.php"><b>here</b></a></p>
+          Since this part does not require a database, it can be ran locally.
+          To run locally, you can open part3.csproj in Visual Studio 2017 and run the project.
+
+          <p>You may also access the live server linked <a href=""><b>here</b></a></p>
         </p>
       </div>
 
@@ -185,7 +185,7 @@
         <ul class="browser-default">
           <li>Contains a list of myImages. Used by the View to store the images</li>
           <ul class="browser-default">
-            <li>MyImages: ArrayList<myImage></li>
+            <li>MyImages: List&lt;Image&gt;</li>
           </ul>
           <li>Parses the text file containing the information about the Images and creates a list of myImages</li>
         </ul>
@@ -234,11 +234,10 @@
 
         <h5 class="teal-text">Set up and running</h5>
         <p>
-          To access the login screen, open 'welcome.php' path on your browser. For example, assuming you have already
-          moved the 'TMA2' directory to the 'htdocs' folder, go to the URL: 'localhost/TMA2/part2/welcome.php'.
-          Or <a href="part2/welcome.php"><b>click here to access part 1</b></a><br>
+          Since this part does not require a database, it can be ran locally.
+          To run locally, you can open part3.csproj in Visual Studio 2017 and run the project.
 
-          <p>You may also access the live server linked <a href="http://zafracomp466.x10host.com/TMA2/part2/welcome.php"><b>here</b></a></p>
+          <p>You may also access the live server linked <a href=""><b>here</b></a></p>
         </p>
 
         <h5 class="teal-text">Extra Information</h5>
@@ -258,12 +257,42 @@
 
         <h5 class="teal-text">Description</h5>
         <p>
+          In parts 3 and 4 of this assignment, you will be developing an online computer store in which
+          customers can select a computer from a list and customize it by replacing some components
+          in its standard configuration with others that may be better or cheaper. Customers can then
+          place an order with the online store. In part 1, focus on the web interface design and implementation of the
+          online store, using ASP.NET in C# and other web technologies you have learned from Units 1–5.
+          The requirements are as follows:
           <ol>
+            <li>Visit some online stores such as Bestbuy.CA and Amazon.CA, study their designs and functionalities, and write your findings in the assignment report.</li>
+            <li>Based on your study above, analyze the requirements of the web application you are to develop and then work out a design of the web application, including drawings of the interface, name and functions of each modules you will need, and web pages/documents to be used.</li>
+            <li>The application running in a web browser should be like a real online store, with a name and logo, menus and buttons for navigation, a welcome page to greet customers, and other pages, such as contacts and a feedback form, and so on.</li>
+            <li>There should be a list of computers, lists of different parts or components (no less
+            than five different components including at least RAM, hard drive, CPU, display,
+            OS, and soundcard) of computers that can be reviewed by customers. At this
+            stage, the information about these products can be hard-coded into the HTML or
+            program files.</li>
+            <li>A customer can select a computer with default/standard configuration and pricing,
+            and then customize it by changing its configuration, that is, by replacing one
+            component with another from a list of compatible components.</li>
+            <li>Whenever a change has been made by the customer, the price total needs to be
+            dynamically changed and displayed to the customer, in an area embedded in the
+            online store, not in a pop-up window.</li>
+            <li>After the customer has hit the Buy or Add to Cart or something similar, a
+            summary of selections, including all the details of the customized computer and
+            its pricing, should be displayed in the browser window.</li>
+            <li>At this stage, you don’t need to save orders placed by customers in the database.
+            You can use Cookies to store and track customer selections.</li>
+            <li>All links, menus, and buttons within the online store should be active.</li>
           </ol>
         </p>
 
         <h5 class="teal-text">My interpretation</h5>
         <p>
+          For this assignment, we are required to create an online computer store which contains computer parts and prebuilt computers.
+          The user should be able to select various parts to build and configure their own computer, but also but a prebuilt if they want.
+          In this part of the assignment, we are going to focus on the user interface of the website, and hard coded items are fine. The requirements above
+          should be met.
         </p>
 
         <h5 class="teal-text">Analysis and Design of the Web Application</h5>
@@ -272,86 +301,336 @@
           data that is to be displayed to the user. The <b>View</b> is the entity responsible for displaying the data
           to the user. The <b>Controller</b> is responsible for changing the model data.
           <br><br>
-
         </p>
 
         <h5 class="teal-text">Documentation</h5>
         <br>
 
         <h6><b>Models</b></h6>
-        <p>myImage.cs</p>
+        <p>Product.cs</p>
         <ul class="browser-default">
-          <li>An object which holds the URL and Caption of the image</li>
+          <li>An abstract class for the products that are available in the shop</li>
           <ul class="browser-default">
-            <li>Url: String</li>
+            <li>Name: String</li>
+            <li>Description: String</li>
+            <li>Type: String</li>
+            <li>Price: double</li>
+            <li>ProductId: int</li>
+          </ul>
+        </ul>
+        <p>Part.cs</p>
+        <ul class="browser-default">
+          <li>A class which inherits from the Product abstract class which represents a computer part in the store</li>
+          <ul class="browser-default">
+            <li>Name: String</li>
+            <li>Description: String</li>
+            <li>Type: String</li>
+            <li>Price: double</li>
+            <li>ProductId: int</li>
+          </ul>
+        </ul>
+        <p>Software.cs</p>
+        <ul class="browser-default">
+          <li>A class which inherits from the Product abstract class which represents a software product</li>
+          <ul class="browser-default">
+            <li>Name: String</li>
+            <li>Description: String</li>
+            <li>Type: String</li>
+            <li>Price: double</li>
+            <li>ProductId: int</li>
+          </ul>
+        </ul>
+        <p>Peripheral.cs</p>
+        <ul class="browser-default">
+          <li>A class which inherits from the Product abstract class which represents a peripheral product</li>
+          <ul class="browser-default">
+            <li>Name: String</li>
+            <li>Description: String</li>
+            <li>Type: String</li>
+            <li>Price: double</li>
+            <li>ProductId: int</li>
+          </ul>
+        </ul>
+        <p>Computer.cs</p>
+        <ul class="browser-default">
+          <li>A class which inherits from the Product abstract class which represents a prebuilt computer</li>
+          <ul class="browser-default">
+            <li>Name: String</li>
+            <li>Description: String</li>
+            <li>Type: String</li>
+            <li>Price: double</li>
+            <li>ProductId: int</li>
+            <li>Parts: List&lt;Part&gt;</li>
+            <li>OperatingSystem: Software</li>
+          </ul>
+        </ul>
+        <p>Checkout.cs</p>
+        <ul class="browser-default">
+          <li>Model to represent the checkout page</li>
+          <ul class="browser-default">
+            <li>List<Product> Cart</li>
             <li>Caption: String</li>
           </ul>
         </ul>
-        <p>Slideshow.cs</p>
+        <p>Configurator.cs</p>
         <ul class="browser-default">
-          <li>Contains a list of myImages. Used by the View to store the images</li>
+          <li>A class containing data for the Configurator page</li>
           <ul class="browser-default">
-            <li>MyImages: ArrayList<myImage></li>
+            <li>Computer: Computer</li>
+            <li>Processors: List&lt;Part&gt;</li>
+            <li>Motherboards: List&lt;Part&gt;</li>
+            <li>Rams: List&lt;Part&gt;</li>
+            <li>Harddrives: List&lt;Part&gt;</li>
+            <li>Videocards: List&lt;Part&gt;</li>
+            <li>Powersupplies: List&lt;Part&gt;</li>
+            <li>Soundcards: List&lt;Part&gt;</li>
+            <li>OperatingSystems: List&lt;Part&gt;</li>
           </ul>
-          <li>Parses the text file containing the information about the Images and creates a list of myImages</li>
+        </ul>
+        <p>Shop.cs</p>
+        <ul class="browser-default">
+          <li>A class containing data for the Shop page</li>
+          <ul class="browser-default">
+            <li>PrebuiltConfigurations: List&lt;Computer&gt;</li>
+            <li>Hardware: List&lt;Part&gt;</li>
+            <li>Peripherals: List&lt;Peripheral&gt;</li>
+            <li>Softwares: List&lt;Software&gt;</li>
+          </ul>
         </ul>
         <h6><b>Views</b></h6>
-        <p>Index.cshtml</p>
+        <p>Shared/_Layout.cshtml</p>
         <ul class="browser-default">
-          <li>A cshtml file which is responsible for displaying the Model's data</li>
-          <li>Very similar to an html file except cshtml has the ability to get the Model's data directly</li>
-          <li>Uses a Bootstrap CSS Carousel Element for the slideshow</li>
-          <li>Contains buttons on the pictures for forward and backward</li>
-          <li>Play button and a switch is created with Materialize CSS</li>
+          <li>A cshtml file which contains html and C# code to display the configuration page</li>
+          <li>Contains html elements that are shared across all views</li>
+          <li>Displays the navigation bar which has various buttons for all the pages in the website</li>
+        </ul>
+        <p>Configurator/Index.cshtml</p>
+        <ul class="browser-default">
+          <li>A cshtml file which contains html and C# code to display the configuration page</li>
+          <li>Accesses the Configurator object data and dynamically fills the dropdowns with parts</li>
+          <li>Uses javascript to change the Total price element by using event handlers</li>
+        </ul>
+        <p>Home/Index.cshtml</p>
+        <ul class="browser-default">
+          <li>Splash page to welcome the user to the website</li>
+        </ul>
+        <p>Shop/Index.cshtml</p>
+        <ul class="browser-default">
+          <li>Accesses the Shop object data and dynamically fills the store with Products</li>
+          <li>Uses Tabs for different types of products so that they are properly displayed</li>
+        </ul>
+        <p>Shop/Checkout.cshtml</p>
+        <ul class="browser-default">
+          <li>Accesses the Checkout object data and dynamically fill a list of products in the users cart</li>
+          <li>For this part, the user does not need to confirm order. Simply display.</li>
         </ul>
         <h6><b>Controllers</b></h6>
         <p>HomeController.cs</p>
         <ul class="browser-default">
           <li>Responsible for responding to the GET request that is created when the user loads the page</li>
-          <li>Loads the text file that contains the image information</li>
-          <li>Create a Slideshow object with said information</li>
-          <li>Return the Index view to show the slideshow</li>
+          <li>Simply returns the Home View to the user</li>
         </ul>
-        <h6><b>Javascript</b></h6>
-        <p>script.js</p>
+        <p>ShopController.cs</p>
         <ul class="browser-default">
-          <li>Contains JavaScript listeners for the Play button and the Switch</li>
-          <li>pauseplayListener()</li>
-          <ul class="browser-default">
-            <li>Toggles the 'paused' flag, pauses the carousel if paused is true</li>
-          </ul>
-          <li>switchListener()</li>
-          <ul class="browser-default">
-            <li>If Checked, then random is selected. Disable the forward and backward buttons then call random()</li>
-            <li>If not Checked, enable the forward and backward button then call sequential()</li>
-          </ul>
-          <li>random()</li>
-          <ul class="browser-default">
-            <li>Pause the carousel then calculate the index for a random image</li>
-            <li>Show the said random index on the carousel, set an interval to do it again until stopped</li>
-            <li>Interval should have a flag to tell if random has been deselected. If so, clear the interval.</li>
-          </ul>
-          <li>sequential()</li>
-          <ul class="browser-default">
-            <li>enable the 'cycle' function of the carousel</li>
-            <li>Set 'randflag' to true so that the random interval is cleared.</li>
-          </ul>
+          <li>Responsible for responding to the GET request that is created when the user loads the page</li>
+          <li>Load hardcoded Shop products and fill a Shop object to send to the view</li>
+          <li>Adding to cart is handled by this controller. It concatenates product ids into one string and appends it to the cookies</li>
         </ul>
-
+        <p>ConfigurationController.cs</p>
+        <ul class="browser-default">
+          <li>Responsible for responding to the GET request that is created when the user loads the page</li>
+          <li>Load hardcoded computer parts and add them into the dropdown for the user to select</li>
+          <li>Creates a Configurator object and sends it to the View.</li>
+        </ul>
         <h5 class="teal-text">Set up and running</h5>
         <p>
-          To access the login screen, open 'welcome.php' path on your browser. For example, assuming you have already
-          moved the 'TMA2' directory to the 'htdocs' folder, go to the URL: 'localhost/TMA2/part2/welcome.php'.
-          Or <a href="part2/welcome.php"><b>click here to access part 1</b></a><br>
+          Since this part does not require a database, it can be ran locally.
+          To run locally, you can open part3.csproj in Visual Studio 2017 and run the project.
 
-          <p>You may also access the live server linked <a href="http://zafracomp466.x10host.com/TMA2/part2/welcome.php"><b>here</b></a></p>
+          <p>You may also access the live server linked <a href=""><b>here</b></a></p>
         </p>
 
         <h5 class="teal-text">Extra Information</h5>
         <p>
-          Materialize CSS was used for this assignment. Also Bootstrap CSS was used. Bootstrap CSS is included
-          in the ASP.NET MVC solution offered in Visual Studio. The base project contains a carousel that I used
-          for reference.
+          <b>Research Findings</b>
+          <br>
+
+          When visiting various web pages, I noticed that it is important to have separate tabs
+          for different types of products. Also, having an image and price for each product is important.
+          Also, it's important to have a navigation bar so that the user is able to access various parts of the page easily.
+
+          Another important function is a search bar, however I did not have the time to implement such functionality.
+          I created wireframes that shows a good indication of what I thought is important for a shop which are shown below.
+
+          <img src="shared/img/shop.png"/>
+          <img src="shared/img/product.png"/>
+          <img src="shared/img/checkout.png"/>
+          <img src="shared/img/configurator.png"/>
+
+        </p>
+      </div>
+
+
+      <div id="part4" class="col s12 container">
+        <h4>Part 4 - Online Computer Store Part 2</h4>
+        <h5 class="teal-text">Links</h5>
+        <p>Live Server: <a href="#"><b>click here for part4</b></a></p>
+
+        <p>If the live server link does not work, the host may have gone down. Please contact me at
+          <a href="mailto:zafra@ualberta.ca">zafra@ualberta.ca</a></p>
+
+        <h5 class="teal-text">Description</h5>
+        <p>
+          In part 4 of the assignment, you will continue your work completed in part 3, to develop a fully
+          functioning online computer store (without payment transaction, though). Your tasks for this part
+          are:
+          <ol>
+            <li>Add a customer management module to the online computer store, which should include
+              new customer registration, customer authentication, and password recovery.</li>
+            <li>Add an order management module which will save orders for registered customers and
+                allow registered customers to manage their orders, including view the list and details of
+                each item in the list and delete or make changes to a selected order in the list.</li>
+            <li>Design and implement a back-end database to support your online computer store that
+              does the following.</li>
+            <ul>
+              <li>Store all the details of the computers and components and replace all the data
+              hard-coded into the program files with data from the database.</li>
+              <li>Use the database for all your customer management.</li>
+              <li>Use the database for all your order management. When an order is submitted, the
+              details of the order, including pricing, need to be saved in the database, and then
+              displayed in an appropriate format to the customer.</li>
+            </ul>
+          </ol>
+        </p>
+
+        <h5 class="teal-text">My interpretation</h5>
+        <p>
+          For this assignment, we are supposed to remove all the hardcoded parts from part 3 and insert them into the databse.
+          Also, the add a registeration and login page so that the user can login save orders and view them for later use.
+          There should be a 'Forgot Password' functionality with the customer management module.
+        </p>
+
+        <h5 class="teal-text">Analysis and Design of the Web Application</h5>
+        <p>
+          The project was created using the Model-View-Controller design pattern. The <b>Model</b> represents the
+          data that is to be displayed to the user. The <b>View</b> is the entity responsible for displaying the data
+          to the user. The <b>Controller</b> is responsible for changing the model data.
+          <br><br>
+        </p>
+
+        <h5 class="teal-text">Documentation</h5>
+        <br>
+        <b>Part 4 uses all of the Models, Views and Controllers from part 3 and the classes below are added for part 4</b>
+
+        <h6><b>Models</b></h6>
+        <p>Order.cs</p>
+        <ul class="browser-default">
+          <li>Class to hold data for an Order</li>
+          <ul class="browser-default">
+            <li>OrderId: int</li>
+            <li>Total: double</li>
+            <li>UserId: int</li>
+            <li>Products: List&lt;Product&gt;</li>
+          </ul>
+        </ul>
+        <p>User.cs</p>
+        <ul class="browser-default">
+          <li>Class to hold data for a User</li>
+          <ul class="browser-default">
+            <li>UserId: int</li>
+            <li>Username: string</li>
+            <li>Password: string</li>
+            <li>ConfirmPassword: string</li>
+            <li>Question: string</li>
+            <li>Answer: string</li>
+            <li>Orders: List&lt;Orders&gt;</li>
+          </ul>
+        </ul>
+        <p>myOrder.cs</p>
+        <ul class="browser-default">
+          <li>Class representing the MyOrder Page</li>
+          <ul class="browser-default">
+            <li>Orders: List&lt;Orders&gt;</li>
+          </ul>
+        </ul>
+        <p>ProductOrder.cs</p>
+        <ul class="browser-default">
+          <li>A class which represents the many-to-many relationship between Products and Orders</li>
+          <ul class="browser-default">
+            <li>Product: Product</li>
+            <li>ProductId: int</li>
+            <li>OrderId: int</li>
+            <li>Order: Order</li>
+          </ul>
+        </ul>
+        <h6><b>Views</b></h6>
+        <p>Account/Register.cshtml</p>
+        <ul class="browser-default">
+          <li>A cshtml file which contains html and C# code to display the configuration page</li>
+          <li>Contains form inputs which are validated automatically by .NET</li>
+          <li>Takes user input which is used for account registration and creates and Object that is bounded to the Account Controller</li>
+        </ul>
+        <p>Account/Login.cshtml</p>
+        <ul class="browser-default">
+          <li>A cshtml file which contains html and C# code to display the configuration page</li>
+          <li>Contains form inputs which are validated automatically by .NET</li>
+          <li>Takes user input which is used for account login and creates and Object that is bounded to the Account Controller</li>
+        </ul>
+        <p>Shop/Order.cshtml</p>
+        <ul class="browser-default">
+          <li>Accesses the Order object data and dynamically fill a list of products that the user ordered</li>
+          <li>Shows the total price of the User's order</li>
+        </ul>
+        <p>Shop/MyOrders.cshtml</p>
+        <ul class="browser-default">
+          <li>Accesses the MyOrder object data to dynamically fill a dropdown box of orders</li>
+          <li>When a dropdown item is selected, order details are displayed to the user similar to the Order.cshtml page</li>
+        </ul>
+        <h6><b>Controllers</b></h6>
+        <p>modified ShopController.cs</p>
+        <ul class="browser-default">
+          <li>Responsible for responding to the GET request that is created when the user loads the page</li>
+          <li>Queries the database for all the Product entries in the database</li>
+          <li>LINQ is used to create the Object representations of the entries in the database</li>
+          <li>Return a Shop object to the View</li>
+          <li>To process an order, the controller first reads the cookies to see which product IDs the user ordered</li>
+          <li>Then, the controller loads the selected products as objects and redirects to user to the Order page with an Order model</li>
+        </ul>
+        <p>modified ConfigurationController.cs</p>
+        <ul class="browser-default">
+          <li>Responsible for responding to the GET request that is created when the user loads the page</li>
+          <li>Queries the database for all the computer Part entries in the database</li>
+          <li>LINQ is used to create the Object representations of the entries in the database</li>
+          <li>Creates a Configurator object and sends it to the View.</li>
+          <li>The controller also creates a Dictionary which maps a product id to its price so that we can dynamically change the total price
+          when the user changes their selection</li>
+        </ul>
+        <p>AccountController.cs</p>
+        <ul class="browser-default">
+          <li>Responds to the Register post request. Checks the database if there are any users registered with the given username</li>
+          <li>If yes, return the Register View with an error, otherwise insert a User entry into the database</li>
+          <li>Error checking is also implemented in this controller</li>
+          <li>Responds to the Login post request. Checks the database if there is a user with the given username and password</li>
+          <li>If yes, return the Login View with an error, otherwise add a cookie entry for the UserID</li>
+          <li>Responds to the Logout post request. Deletes the UserID cookie</li>
+        </ul>
+        <h5 class="teal-text">Set up and running</h5>
+        <p>
+          This part can be ran locally but only if the database is seeded and running. In this project, it is using my database and you can still accesss it locally
+          with the connection string that is already setup for you in Startup.cs
+
+          You simply have to load the part4.csproj file in Visual Studio and run.
+          <p>You may also access the live server linked <a href=""><b>here</b></a></p>
+        </p>
+
+        <h5 class="teal-text">Extra Information</h5>
+        <p>
+          For this part of the assignment, I had to remove the ability to Configure a prebuilt computer.
+          I had issues translating the representation of a Computer (which inherits from Product) containing various Parts (which also inherits from Product).
+          In short, I was not able to represent a Many-to-Many relationship with the same table. (Product has many Products)
+          <br><br>
+          <b>Database Schema</b><br>
+          <img src="shared/img/part4db.png">
         </p>
       </div>
 
