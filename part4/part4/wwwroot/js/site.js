@@ -1,9 +1,7 @@
-﻿$(document).ready(function(){
+﻿$(document).ready(function () {
     $('.tabs').tabs();
-});
-
-$(document).ready(function() {
     $('select').material_select();
+    $('.dropdown-trigger').dropdown();
 });
 
 function readCookie(name) {

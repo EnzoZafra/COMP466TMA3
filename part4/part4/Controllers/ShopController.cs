@@ -103,6 +103,24 @@ namespace part4.Controllers
             return View(order);
         }
 
+        public IActionResult MyOrders()
+        {
+            MyOrder myorder = new MyOrder();
+            List<int> orderids = new List<int>();
+            setLogin();
+            var userorders = _context.Orders
+                .Where(o => o.UserId == Int32.Parse(Request.Cookies["UserID"]));
+            foreach(var item in userorders) {
+                item.Products = _context.Orders
+                .Where(o => o.OrderId == item.OrderId)
+                .SelectMany(m => m.ProductOrders.Select(po => po.Product))
+                .ToList();
+            }
+
+            myorder.Orders = userorders.ToList();
+            return View(myorder);
+        }
+
         public void setLogin()
         {
             ViewBag.LoggedIn = Request.Cookies["UserID"];

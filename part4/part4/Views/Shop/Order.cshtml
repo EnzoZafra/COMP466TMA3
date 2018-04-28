@@ -3,7 +3,8 @@
     ViewData["Title"] = "Order #" + Model.OrderId;
 }
 <div class="card-panel">
-    <h3>Thank you for your order! Please wait 2-3 days for shipping.</h3>
+    <h4>Your order number is: @Model.OrderId</h4>
+    <h5>Thank you for your order! Please wait 2-3 days for shipping.</h5>
     <ul id="cartdetails" class="collection row">
         @foreach (var item in Model.Products)
         {
@@ -48,10 +49,10 @@
                 <hr>
                 <p>
                     @item.getDescription() <br>
-            </p>
-            <h5 class="secondary-content">$@item.getPrice().ToString("F")</h5>
-        </li>
-    }
+                </p>
+                <h5 class="secondary-content">$@item.getPrice().ToString("F")</h5>
+            </li>
+        }
     </ul>
     <div class="right-align">
         <h5 class="teal-text">Total Price: $@Model.Total.ToString("F")</h5>

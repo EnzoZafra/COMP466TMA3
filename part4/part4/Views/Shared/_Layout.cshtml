@@ -10,6 +10,10 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/style.css")" media="screen" runat="server" />
 </head>
 
+<ul id="dropdown1" class="dropdown-content">
+    <li><a class="white-text" asp-controller="Shop" asp-action="MyOrders">My Orders</a></li>
+    <li><a class="white-text" asp-controller="Account" asp-action="Logout">Logout</a></li>
+</ul>
 <nav class="pink lighten-1" role="navigation">
     <div class="nav-wrapper container">
         <a asp-controller="Home" asp-action="Index" class="brand-logo">PC Express</a>
@@ -20,7 +24,7 @@
             <li><a class="white-text" asp-controller="Shop" asp-action="Checkout">Checkout</a></li>
             @if (ViewBag.LoggedIn != null)
             {
-                <li><a class="white-text" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">My Account<i class="material-icons right">arrow_drop_down</i></a></li>
             }
             else
             {

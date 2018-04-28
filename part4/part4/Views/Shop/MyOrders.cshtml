@@ -1,0 +1,69 @@
+﻿@model part4.Models.MyOrder
+@{
+    ViewData["Title"] = "My Orders";
+}
+<div class="card-panel">
+    <h4>Your Orders</h4>
+    <ul class="collapsible">
+        @foreach (var order in Model.Orders)
+        {
+            <li>
+                <div class="collapsible-header">@order.OrderId</div>
+                <div class="collapsible-body">
+                       <ul id="cartdetails" class="collection row">
+                            @foreach (var item in order.Products)
+                            {
+                                <li class="collection-item avatar">
+                                    @if (item.getType() == "Computer")
+                                    {
+                                        <img class="configimg" src="~/images/computer.jpg">
+                                    }
+                                    @if (item.getType() == "VideoCard")
+                                    {
+                                        <img class="configimg" src="~/images/videocard.png">
+                                    }
+                                    @if (item.getType() == "Processor")
+                                    {
+                                        <img class="configimg" src="~/images/processor.jpeg">
+                                    }
+                                    @if (item.getType() == "Motherboard")
+                                    {
+                                        <img class="configimg" src="~/images/motherboard.jpg">
+                                    }
+                                    @if (item.getType() == "RAM")
+                                    {
+                                        <img class="configimg" src="~/images/memory.jpg">
+                                    }
+                                    @if (item.getType() == "SoundCard")
+                                    {
+                                        <img class="configimg" src="~/images/soundcard.jpeg">
+                                    }
+                                    @if (item.getType() == "Software")
+                                    {
+                                        <img class="configimg" src="~/images/operatingsystem.jpg">
+                                    }
+                                    @if (item.getType() == "Harddrive")
+                                    {
+                                        <img class="configimg" src="~/images/harddrive.jpg">
+                                    }
+                                    @if (item.getType() == "PowerSupply")
+                                    {
+                                        <img class="configimg" src="~/images/powersupply.jpg">
+                                    }
+                                    <span class="title"><b>@item.getName()</b></span>
+                                    <hr>
+                                    <p>
+                                        @item.getDescription() <br>
+                                    </p>
+                                    <h5 class="secondary-content">$@item.getPrice().ToString("F")</h5>
+                                </li>
+                            }
+                        </ul>
+                        <div class="right-align">
+                            <h5 class="teal-text">Total Price: $@order.Total.ToString("F")</h5>
+                        </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
