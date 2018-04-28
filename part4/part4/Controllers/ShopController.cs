@@ -46,38 +46,9 @@ namespace part4.Controllers
             List<Product> productstobuy = new List<Product>();
             String cart = Request.Cookies["cart"];
             if (!string.IsNullOrEmpty(cart)) {
-                String[] parts = cart.Split('/');
-                List<int> productids = new List<int>();
-                foreach (var part in parts)
-                {
-                    if (!string.IsNullOrEmpty(part))
-                    {
-                        // If selected none, ignore
-                        if (part != "-1")
-                        {
-                            productids.Add(int.Parse(part));
-                        }
-                    }
-                }
-                // Make db call for part 4 (Select * from products where id in [product id array] instead of below
-                var products = from p in _context.Products
-                               select p;
-                var selectedproducts = products.Where(p => productids.Contains(p.ProductId));
-                List<Computer> comptobuy = selectedproducts.OfType<Computer>().ToList();
-                List<Part> parttobuy = selectedproducts.OfType<Part>().ToList();
-                List<Software> softwaretobuy = selectedproducts.OfType<Software>().ToList();
+                List<int> productids = parseCart(cart);
 
-                foreach(var comp in comptobuy) {
-                    productstobuy.Add(comp);
-                }
-                foreach (var part in parttobuy)
-                {
-                    productstobuy.Add(part);
-                }
-                foreach (var sw in softwaretobuy)
-                {
-                    productstobuy.Add(sw);
-                }
+                productstobuy = getProducts(productids);
             }
 
             Checkout checkout = new Checkout(productstobuy);
@@ -92,9 +63,96 @@ namespace part4.Controllers
             return RedirectToAction("Checkout");
         }
 
+        public IActionResult ProcessOrder()
+        {
+            Order neworder = new Order();
+
+            neworder.UserId = Int32.Parse(Request.Cookies["UserID"]);
+            string cart = Request.Cookies["cart"];
+            if(!string.IsNullOrEmpty(cart))
+            {
+                List<int> productids = parseCart(cart);
+                var products = from p in _context.Products
+                               select p;
+                var selectedproducts = products.Where(p => productids.Contains(p.ProductId));
+                foreach (var item in selectedproducts)
+                {
+                    ProductOrder po = new ProductOrder();
+                    po.Product = item;
+                    po.Order = neworder;
+                    _context.ProductOrders.Add(po);
+                    neworder.Total += item.Price;
+                }
+                _context.Orders.Add(neworder);
+                _context.SaveChanges();
+
+                return RedirectToAction("Order", neworder);
+            }
+           
+            return RedirectToAction("Checkout");
+        }
+
+        public IActionResult Order(Order order)
+        {
+            setLogin();
+            string orderlist = TempData["orderlist"] as string;
+            List<int> productids = parseCart(orderlist);
+            order.Products = getProducts(productids);
+
+            Response.Cookies.Delete("cart");
+            return View(order);
+        }
+
         public void setLogin()
         {
             ViewBag.LoggedIn = Request.Cookies["UserID"];
+        }
+
+        public List<int> parseCart(string cartstring)
+        {
+            List<int> productids = new List<int>();
+            String cart = Request.Cookies["cart"];
+            if (!string.IsNullOrEmpty(cart))
+            {
+                String[] parts = cart.Split('/');
+                foreach (var part in parts)
+                {
+                    if (!string.IsNullOrEmpty(part))
+                    {
+                        // If selected none, ignore
+                        if (part != "-1")
+                        {
+                            productids.Add(int.Parse(part));
+                        }
+                    }
+                }
+            }
+            return productids;
+        }
+
+        public List<Product> getProducts(List<int> productids)
+        {
+            List<Product> productstobuy = new List<Product>();
+            var products = from p in _context.Products
+                           select p;
+            var selectedproducts = products.Where(p => productids.Contains(p.ProductId));
+            List<Computer> comptobuy = selectedproducts.OfType<Computer>().ToList();
+            List<Part> parttobuy = selectedproducts.OfType<Part>().ToList();
+            List<Software> softwaretobuy = selectedproducts.OfType<Software>().ToList();
+
+            foreach (var comp in comptobuy)
+            {
+                productstobuy.Add(comp);
+            }
+            foreach (var part in parttobuy)
+            {
+                productstobuy.Add(part);
+            }
+            foreach (var sw in softwaretobuy)
+            {
+                productstobuy.Add(sw);
+            }
+            return productstobuy;
         }
     }
 }

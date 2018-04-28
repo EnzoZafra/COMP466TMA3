@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace part4.Models
 {
@@ -9,6 +10,9 @@ namespace part4.Models
         public double Total { get; set; }
         public int UserId { get; set; }
 
-        ICollection<Product> Parts { get; set; } = new List<Product>();
+        public ICollection<ProductOrder> ProductOrders { get; set; } = new List<ProductOrder>();
+
+        [NotMapped]
+        public List<Product> Products { get; set; } = new List<Product>();
     }
 }

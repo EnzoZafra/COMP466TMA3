@@ -32,14 +32,28 @@ namespace part4.Controllers
         public IActionResult Register(User user)
         {
             if (ModelState.IsValid) {
-                _context.Users.Add(user);
-                _context.SaveChanges();
-                ModelState.Clear();
-                ViewBag.Message = user.Username + " successfully registered";
+                if (user.Password == user.ConfirmPassword)
+                {
+                    if (_context.Users.Where(u => u.Username == user.Username).Any())
+                    {
+                        ViewBag.Message = "Username is already taken";
+                        return View();
+                    }
+                    
+                    _context.Users.Add(user);
+                    _context.SaveChanges();
+                    ModelState.Clear();
+                    ViewBag.Message = user.Username + " successfully registered";
+                }
+                else
+                {
+                    ViewBag.Message = "Please confirm your password";
+                }
+
             }
             else {
                 ViewBag.Message = "Registration failed. Please check that you have " +
-                    "all fields filled and you have successfully confirmed your password";
+                    "all fields filled";
                 user.ConfirmPassword = "";
             }
             return View();
@@ -53,17 +67,22 @@ namespace part4.Controllers
 
         [HttpPost]
         public IActionResult Login(User user) {
-            var usr = _context.Users.Single(u => u.Username == user.Username 
+            if (_context.Users.Any())
+            {
+                var usr = _context.Users.Single(u => u.Username == user.Username
                                             && u.Password == user.Password);
-            if (usr != null) {
-                Response.Cookies.Delete("UserID");
-                Response.Cookies.Delete("Username");
-                Response.Cookies.Append("UserID", usr.UserId.ToString());
-                Response.Cookies.Append("Username", user.Username);
-                return RedirectToAction("LoggedIn");
-            }
-            else {
-                ModelState.AddModelError("", "Username or password is incorrect");
+                if (usr != null)
+                {
+                    Response.Cookies.Delete("UserID");
+                    Response.Cookies.Delete("Username");
+                    Response.Cookies.Append("UserID", usr.UserId.ToString());
+                    Response.Cookies.Append("Username", user.Username);
+                    return RedirectToAction("LoggedIn");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Username or password is incorrect");
+                }
             }
             return View();
         }

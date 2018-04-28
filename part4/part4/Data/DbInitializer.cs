@@ -11,20 +11,9 @@ namespace part4.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.Users.Any())
+            if (context.Products.Any())
             {
                 return;   // DB has been seeded
-            }
-
-            var users = new User[]
-            {
-                new User{Username="enzo", Password="zafra", Question="Whats your fathers maiden name", Answer="santos",
-                    }
-            };
-
-            foreach (User u in users)
-            {
-                context.Users.Add(u);
             }
 
             // Add parts
