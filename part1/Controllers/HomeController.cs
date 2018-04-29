@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace part1.Controllers
             Response.Cookies.Delete("VisitCount");
             Response.Cookies.Append("VisitCount", (visits).ToString());
 
-            model.IPAddress = Request.HttpContext.Connection.LocalIpAddress.ToString();
+            model.IPAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
             model.Visits = visits;
             return View(model);
         }
